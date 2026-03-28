@@ -42,7 +42,7 @@ export const UserContextProvider = ({ children }) => {
       setError(null); 
       navigate(`/home/${userID}`);
     } catch (err) {
-      setError("Account already exists.");
+      setError(err.response.data);
       console.error("Registration error:", err);
     }
   };

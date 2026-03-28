@@ -52,8 +52,9 @@ public class PersonController {
                 return ResponseEntity.ok("Account created successfully.");
             }
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Error occurred during account creation.");
+                    .body(e.getMessage());
         }
     }
 
