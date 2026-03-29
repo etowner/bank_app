@@ -9,8 +9,7 @@ const Header = ({ userID, password }) => {
     <div id="#home" style={{ background: "#ffffff" }}>
       <Navbar bg="dark" variant="dark" className="mb-5">
         <Container>
-          <Navbar.Brand>BankApp</Navbar.Brand>
-          <Navbar.Toggle />
+          <Navbar.Brand> Bank App</Navbar.Brand>
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto"></Nav>
           </Navbar.Collapse>

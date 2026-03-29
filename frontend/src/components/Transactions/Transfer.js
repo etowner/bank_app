@@ -4,15 +4,14 @@ import { useParams } from "react-router-dom";
 import api from "../../api/axiosConfig";
 import { UserContext } from "../../UserContext";
 
-export default function Transfer(props) {
+export default function Transfer() {
   const { userID } = useParams();
-  const { getUser, updateUser } = useContext(UserContext)
+  const { getUser } = useContext(UserContext)
   const [amount, setAmount] = useState(0);
   const [accountID1, setAccountID1] = useState(0);
   const [accountID2, setAccountID2] = useState(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(null);
 
   const handleTransferClick = (event) => {
     event.preventDefault();

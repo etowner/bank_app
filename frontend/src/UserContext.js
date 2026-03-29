@@ -29,7 +29,7 @@ export const UserContextProvider = ({ children }) => {
       setError(null); 
       navigate(`/home/${userID}`);
     } catch (err) {
-      setError("Invalid credentials");
+      setError("Either the username or password was incorrect.");
       console.error("Login error:", err);
     }
   };

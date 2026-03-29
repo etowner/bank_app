@@ -35,6 +35,7 @@ const Home = () => {
 
   useEffect(() => {
     getUser(userID);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userID]);
   
 
