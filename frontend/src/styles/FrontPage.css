@@ -10,16 +10,58 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 2rem;
   text-align: center;
 }
 
 .FrontPage-header {
   color: var(--color-text-on-dark);
-  margin-bottom: 2rem;
 }
 
 .FrontPage-header h1 {
   font-size: 2.5rem;
   font-weight: 700;
   letter-spacing: 0.04em;
+  margin: 0;
+}
+
+.frontpage-tagline {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.05rem;
+  margin-top: 0.5rem;
+  letter-spacing: 0.02em;
+}
+
+/* ── Login card ─────────────────────────────────────────────── */
+
+/* min() caps at 35rem on large screens, shrinks to 90vw on small */
+.account-box {
+  width: min(35rem, 90vw);
+  border: none !important;
+  border-top: 3px solid var(--color-gold) !important;
+  border-radius: var(--radius-card) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+}
+
+
+.account-box .nav-tabs {
+  --bs-nav-tabs-link-active-color:        var(--color-primary);
+  --bs-nav-tabs-link-active-border-color: var(--color-primary)
+                                          var(--color-primary)
+                                          var(--color-card);
+  --bs-nav-tabs-border-color:             var(--color-border);
+}
+
+.account-box .form-control:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 0.2rem rgba(var(--color-primary-rgb), 0.2);
+}
+
+.account-box .btn {
+  --bs-btn-bg:                  var(--color-primary);
+  --bs-btn-border-color:        var(--color-primary);
+  --bs-btn-color:               var(--color-text-on-dark);
+  --bs-btn-hover-bg:            var(--color-primary-dark);
+  --bs-btn-hover-border-color:  var(--color-primary-dark);
+  --bs-btn-active-bg:           var(--color-primary-dark);
 }
