@@ -1,25 +1,15 @@
-
 import { Nav, Navbar, Container } from "react-bootstrap";
 import ProfileManager from "./ProfileManager/ProfileManager";
 
-const Header = () => {
-  return (
-    <div id="#home" style={{ background: "#ffffff" }}>
-      <Navbar bg="dark" variant="dark" className="mb-5">
-        <Container>
-          <Navbar.Brand> Bank App</Navbar.Brand>
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto"></Nav>
-          </Navbar.Collapse>
-          <Navbar.Collapse className="justify-content-end">
-            <Navbar.Text>
-              Signed in as:
-              <ProfileManager/>
-            </Navbar.Text>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
-    </div>
-  );
-};
+const Header = () => (
+  <Navbar bg="dark" variant="dark" className="mb-4">
+    <Container>
+      <Navbar.Brand>Bank App</Navbar.Brand>
+      <Nav className="ms-auto align-items-center">
+        <Navbar.Text className="me-2">Signed in as:</Navbar.Text>
+        <ProfileManager />
+      </Nav>
+    </Container>
+  </Navbar>
+);
 export default Header;

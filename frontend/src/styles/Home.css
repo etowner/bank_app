@@ -12,3 +12,85 @@
 .home-welcome-name {
   color: var(--color-primary);
 }
+
+/* ── Account list rows ── */
+.account-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.625rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.account-row:last-child {
+  border-bottom: none;
+}
+
+.account-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.account-type {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--color-text-primary);
+}
+
+.account-number {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+}
+
+.account-balance {
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+/* ── Financial summary card ── */
+.summary-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.75rem;
+}
+
+.summary-total-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+}
+
+.summary-total-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.summary-account-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.summary-account-row:last-child {
+  border-bottom: none;
+}
+
+.summary-account-type {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+.summary-account-number {
+  font-size: 0.75rem;
+}
+
+.summary-account-balance {
+  font-weight: 600;
+  color: var(--color-text-primary);
+}

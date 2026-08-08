@@ -8,3 +8,6 @@ export const formatDate = (timestamp: string) => {
         hour12: true
     });
 };
+
+export const fmt = (n: number) =>
+  n.toLocaleString("en-US", { style: "currency", currency: "USD" });
