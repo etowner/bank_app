@@ -1,5 +1,14 @@
 .Home {
-  text-align: center;
-  background-color: slategray;
+  min-height: 100vh;
+  background-color: var(--color-surface);
 }
 
+.home-welcome {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.home-welcome-name {
+  color: var(--color-primary);
+}

@@ -1,3 +1,38 @@
+:root {
+  /* Brand palette */
+  --color-primary:      #1b3a5c;
+  --color-primary-dark: #0d2137;
+  --color-primary-rgb:  27, 58, 92;
+  --color-gold:         #d4a843;
+  --color-gold-light:   #efc45c;
+
+  /* Surfaces */
+  --color-surface:      #f0f4f8;
+  --color-card:         #ffffff;
+
+  /* Text */
+  --color-text-primary: #1a2332;
+  --color-text-muted:   #6b7c93;
+  --color-text-on-dark: #ffffff;
+
+  /* Semantic */
+  --color-success:      #2e7d32;
+  --color-danger:       #c62828;
+  --color-border:       #dde3ea;
+
+  /* Elevation */
+  --shadow-card:        0 2px 8px  rgba(27, 58, 92, 0.08);
+  --shadow-card-hover:  0 4px 16px rgba(27, 58, 92, 0.14);
+  --radius-card:        0.625rem;
+
+  /* ── Bootstrap 5 overrides ─────────────────────────────────── */
+  --bs-body-bg:    #f0f4f8;
+  --bs-body-color: #1a2332;
+  --bs-dark:       #1b3a5c;
+  --bs-dark-rgb:   27, 58, 92;
+}
+
+/* ─── Base ──────────────────────────────────────────────────── */
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,9 +40,57 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-surface);
+  color: var(--color-text-primary);
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+/* ─── Shared component classes ──────────────────────────────── */
+
+.card-header-primary {
+  background-color: var(--color-primary);
+  color: var(--color-text-on-dark);
+  border-bottom: 3px solid var(--color-gold);
+  padding: 0.875rem 1.25rem;
+}
+
+.card-header-primary h2,
+.card-header-primary h3,
+.card-header-primary h4 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Consistent border, radius, shadow across all cards */
+.bank-card {
+  background-color: var(--color-card);
+  border: 1px solid var(--color-border) !important;
+  border-radius: var(--radius-card) !important;
+  box-shadow: var(--shadow-card);
+  transition: box-shadow 0.2s ease;
+  height: 100%;
+}
+
+.bank-card:hover {
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* Transaction amount colours */
+.tx-credit { color: var(--color-success); font-weight: 600; }
+.tx-debit  { color: var(--color-danger);  font-weight: 600; }
+
+/* ── Bootstrap .btn-dark override ─────────────────────────────────── */
+.btn-dark {
+  --bs-btn-bg:                  var(--color-primary);
+  --bs-btn-border-color:        var(--color-primary);
+  --bs-btn-hover-bg:            var(--color-primary-dark);
+  --bs-btn-hover-border-color:  var(--color-primary-dark);
+  --bs-btn-active-bg:           var(--color-primary-dark);
+  --bs-btn-active-border-color: var(--color-primary-dark);
 }

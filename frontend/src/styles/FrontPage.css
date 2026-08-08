@@ -1,12 +1,25 @@
 .FrontPage {
+  min-height: 100vh;
+  background: linear-gradient(
+    150deg,
+    var(--color-primary-dark) 0%,
+    var(--color-primary)      55%,
+    #2a5298                   100%
+  );
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  background-color: #282c34;
-  font-size: calc(10px + 2vmin);
 }
 
 .FrontPage-header {
-  align-items: center;
-  color: white;
+  color: var(--color-text-on-dark);
+  margin-bottom: 2rem;
 }
 
-
+.FrontPage-header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
