@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { Button, Col, Form, Row, Alert } from "react-bootstrap";
+import { Alert, Button, Form } from "react-bootstrap";
 import { deposit } from "../../api/transactionApi";
 import type { Account } from "../../lib/types";
 
@@ -10,63 +10,61 @@ interface DepositProps {
 }
 
 export default function Deposit({ setAccount, fetchAccountData }: DepositProps) {
-  const [amount, setAmount] = useState('');
   const { accountNumber } = useParams<{ accountNumber: string }>();
+  const [amount, setAmount] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-
-  const handleDepositClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
+  const handleDepositClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     const parsedAmount = parseFloat(amount);
 
     if (isNaN(parsedAmount) || parsedAmount <= 0) {
-      setError("Invalid deposit amount. Please enter a valid amount.");
+      setError("Enter a valid deposit amount.");
       return;
     }
 
     setLoading(true);
-
     try {
       const updatedAccount = await deposit(accountNumber!, parsedAmount);
-      setAmount('');
+      setAmount("");
       setError(null);
-      setAccount(updatedAccount); 
+      setAccount(updatedAccount);
       await fetchAccountData();
-    } catch (error) {
-      setError("Deposit failed. Please try again later.");
-      console.error(error);
+    } catch {
+      setError("Deposit failed. Please try again.");
     } finally {
       setLoading(false);
     }
   };
 
-
   return (
-    <div>
-      <Form.Group as={Row} className="mb-3">
-        <Form.Label column sm={5}>
-          Enter an amount:
-        </Form.Label>
-        <Col sm={3}>
-          <Form.Control
-            type="number"
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-            placeholder="Enter amount"
-            min="0"
-            step="0.01"
-          />
-        </Col>
-        <Col sm={2}>
-          <Button onClick={(e) => void handleDepositClick(e)} className="mb-3">
-            {loading ? <>Loading..</> : <>Submit</>}
-          </Button>
-        </Col>
+    <Form>
+      <Form.Group className="mb-3">
+        <Form.Label>Amount</Form.Label>
+        <Form.Control
+          type="number"
+          value={amount}
+          onChange={(e) => setAmount(e.target.value)}
+          placeholder="0.00"
+          min="0"
+          step="0.01"
+        />
       </Form.Group>
-      <Row className="justify-content-md-center">
-        <Col sm={4}>{error && <Alert variant="danger">{error}</Alert>}</Col>
-      </Row>
-    </div>
+      <div className="d-grid">
+        <Button
+          variant="dark"
+          onClick={(e) => void handleDepositClick(e)}
+          disabled={loading}
+        >
+          {loading ? "Processing…" : "Deposit"}
+        </Button>
+      </div>
+      {error && (
+        <Alert variant="danger" className="mt-3 mb-0">
+          {error}
+        </Alert>
+      )}
+    </Form>
   );
 }
