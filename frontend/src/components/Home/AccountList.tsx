@@ -1,7 +1,7 @@
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import type { Account } from "../../lib/types";
-import { fmt } from "../../lib/utils";
+import { formatCurrency } from "../../lib/utils";
 
 export default function AccountList({ accounts }: { accounts: Account[] }) {
   const navigate = useNavigate();
@@ -19,7 +19,7 @@ export default function AccountList({ accounts }: { accounts: Account[] }) {
             <span className="account-number">#{account.accountNumber}</span>
           </div>
           <div className="d-flex align-items-center gap-3">
-            <span className="account-balance">{fmt(account.balance)}</span>
+            <span className="account-balance">{formatCurrency(account.balance)}</span>
             <Button
               variant="outline-dark"
               size="sm"

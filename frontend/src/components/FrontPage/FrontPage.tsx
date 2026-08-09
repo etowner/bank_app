@@ -4,7 +4,7 @@ import "../../styles/FrontPage.css";
 const FrontPage = () => (
   <div className="FrontPage">
     <div className="FrontPage-header">
-      <h1>Bank Application</h1>
+      <h1>Aegis</h1>
       <p className="frontpage-tagline">Secure banking, simplified.</p>
     </div>
     <AccountBox />

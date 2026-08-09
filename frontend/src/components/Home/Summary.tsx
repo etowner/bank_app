@@ -1,6 +1,6 @@
 import { Card } from "react-bootstrap";
 import type { Account } from "../../lib/types";
-import { fmt } from "../../lib/utils";
+import { formatCurrency } from "../../lib/utils";
 
 interface Props {
   accounts: Account[];
@@ -19,7 +19,7 @@ export default function FinancialSummary({ accounts }: Props) {
       <Card.Body>
         <div className="summary-total">
           <span className="summary-total-label">Net Worth</span>
-          <span className="summary-total-value">{fmt(total)}</span>
+          <span className="summary-total-value">{formatCurrency(total)}</span>
         </div>
         <hr />
         {accounts.length === 0 ? (
@@ -33,7 +33,7 @@ export default function FinancialSummary({ accounts }: Props) {
                   #{a.accountNumber}
                 </span>
               </span>
-              <span className="summary-account-balance">{fmt(a.balance)}</span>
+              <span className="summary-account-balance">{formatCurrency(a.balance)}</span>
             </div>
           ))
         )}

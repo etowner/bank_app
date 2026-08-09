@@ -1,8 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, test, vi } from "vitest";
-import AccountBox from "../components/FrontPage/AccountBox";
-import { UserContext } from "../UserContext";
+import AccountBox from "../../src/components/FrontPage/AccountBox";
+import { UserContext } from "../../src/auth/UserContext";
 import React from "react";
 describe("AccountBox", () => {
   test("submits register and login credentials from the form", async () => {

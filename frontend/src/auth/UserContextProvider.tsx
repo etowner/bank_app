@@ -1,9 +1,9 @@
 import { useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import { getUser, registerUser, loginUser, logoutUser } from "./api/userApi";
+import { getUser, registerUser, loginUser, logoutUser } from "../api/userApi";
 import { UserContext } from "./UserContext";
-import { getAxiosError } from "./api/axiosConfig";
-import type { User } from "./lib/types";
+import { getAxiosError } from "../api/axiosConfig";
+import type { User } from "../lib/types";
 
 
 export const UserContextProvider = ({ children }: { children: React.ReactNode }) => {

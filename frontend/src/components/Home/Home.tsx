@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Alert, Card, Col, Container, Row } from "react-bootstrap";
-import { useUserContext } from "../../UserContext";
+import { useUserContext } from "../../auth/UserContext";
 import { createAccount } from "../../api/accountApi";
 import AccountList from "./AccountList";
 import FinancialSummary from "./Summary";

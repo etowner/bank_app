@@ -9,7 +9,7 @@ import CloseAccount from "./CloseAccount";
 import LineChart from "./LineChart";
 import { getTransactions } from "../../api/transactionApi";
 import { getAccount } from "../../api/accountApi";
-import { fmt, formatDate } from "../../lib/utils";
+import { formatCurrency, formatDate } from "../../lib/utils";
 import type { Account, Transaction } from "../../lib/types";
 import { getAxiosError } from "../../api/axiosConfig";
 import "../../styles/Account.css";
@@ -68,7 +68,7 @@ const AccountPage = () => {
           <div className="account-hero-number">#{accountNumber}</div>
           <div className="account-hero-label">Current Balance</div>
           <div className="account-hero-balance">
-            {account ? fmt(account.balance) : "—"}
+            {account ? formatCurrency(account.balance) : "—"}
           </div>
         </div>
 
@@ -103,7 +103,7 @@ const AccountPage = () => {
                           </td>
                           <td className={isCredit(tx.type) ? "tx-credit" : "tx-debit"}>
                             {isCredit(tx.type) ? "+" : "−"}
-                            {fmt(tx.amount)}
+                            {formatCurrency(tx.amount)}
                           </td>
                           <td>{formatDate(tx.timestamp)}</td>
                         </tr>

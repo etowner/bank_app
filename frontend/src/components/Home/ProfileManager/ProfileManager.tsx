@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button, Modal, Offcanvas, ListGroup } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { useUserContext } from "../../../UserContext";
+import { useUserContext } from "../../../auth/UserContext";
 import ChangePassword from "./ChangePassword";
 import ChangeUsername from "./ChangeUsername";
 import { deleteUser } from "../../../api/userApi";
