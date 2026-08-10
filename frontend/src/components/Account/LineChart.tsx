@@ -2,7 +2,7 @@ import "chart.js/auto";
 import { Line } from "react-chartjs-2";
 import type { ChartOptions } from "chart.js";
 import type { Transaction } from "../../lib/types";
-import { formatDate } from "../../lib/utils";
+import { formatDate, getCssVar } from "../../lib/utils";
 
 interface LineChartProps {
   accountNumber: string;
@@ -16,8 +16,8 @@ export default function LineChart({ accountNumber, transactions }: LineChartProp
       {
         label: `Account #${accountNumber}`,
         data: transactions.map((t) => t.amount),
-        borderColor: "rgba(27, 58, 92, 1)",
-        backgroundColor: "rgba(27, 58, 92, 0.1)",
+        borderColor: getCssVar("--color-primary"),
+        backgroundColor: getCssVar("--color-primary") + "1a",
         tension: 0.3,
       },
     ],

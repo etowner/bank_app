@@ -11,3 +11,6 @@ export const formatDate = (timestamp: string) => {
 
 export const formatCurrency = (n: number) =>
   n.toLocaleString("en-US", { style: "currency", currency: "USD" });
+
+export const getCssVar = (name: string) =>
+  getComputedStyle(document.documentElement).getPropertyValue(name).trim();

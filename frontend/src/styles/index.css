@@ -94,3 +94,15 @@ code {
   --bs-btn-active-bg:           var(--color-primary-dark);
   --bs-btn-active-border-color: var(--color-primary-dark);
 }
+
+[data-theme="dark"] {
+  --color-surface:      #0f1923;
+  --color-card:         #1a2736;
+  --color-text-primary: #e8edf2;
+  --color-text-muted:   #8fa3b8;
+  --color-border:       #2a3d52;
+
+  /* Bootstrap picks these up too */
+  --bs-body-bg:    #0f1923;
+  --bs-body-color: #e8edf2;
+}
