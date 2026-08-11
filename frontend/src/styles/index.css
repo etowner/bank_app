@@ -86,13 +86,19 @@ code {
 .tx-debit  { color: var(--color-danger);  font-weight: 600; }
 
 /* ── Bootstrap .btn-dark override ─────────────────────────────────── */
-.btn-dark {
+.transfer-card .btn-dark,
+.accordion .btn-dark {
   --bs-btn-bg:                  var(--color-primary);
   --bs-btn-border-color:        var(--color-primary);
   --bs-btn-hover-bg:            var(--color-primary-dark);
   --bs-btn-hover-border-color:  var(--color-primary-dark);
   --bs-btn-active-bg:           var(--color-primary-dark);
   --bs-btn-active-border-color: var(--color-primary-dark);
+}
+
+.navbar.navbar-dark {
+  background-color: var(--color-primary);
+  border-bottom: 3px solid var(--color-gold);
 }
 
 [data-theme="dark"] {

@@ -78,7 +78,7 @@ export default function Transfer() {
               step="0.01"
             />
           </Form.Group>
-          <div className="d-grid">
+          <div className="bank-card transfer-card">
             <Button
               variant="dark"
               onClick={(e) => void handleTransferClick(e)}

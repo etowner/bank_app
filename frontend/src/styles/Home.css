@@ -48,6 +48,15 @@
   color: var(--color-text-primary);
 }
 
+.transfer-card {
+  max-width: 10rem;
+  margin: 0 auto;
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+ 
+}
+
 /* ── Financial summary card ── */
 .summary-total {
   display: flex;

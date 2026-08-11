@@ -2,7 +2,7 @@ import { Nav, Navbar, Container } from "react-bootstrap";
 import ProfileManager from "./ProfileManager/ProfileManager";
 
 const Header = () => (
-  <Navbar bg="dark" variant="dark" className="mb-4">
+  <Navbar variant="dark" className="mb-4">
     <Container>
       <Navbar.Brand>Aegis</Navbar.Brand>
       <Nav className="ms-auto align-items-center">

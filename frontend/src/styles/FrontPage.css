@@ -50,6 +50,11 @@
                                           var(--color-primary)
                                           var(--color-card);
   --bs-nav-tabs-border-color:             var(--color-border);
+  --bs-nav-link-color:                    var(--color-text-muted);
+}
+
+.account-box .form-control {
+  justify-self: center;
 }
 
 .account-box .form-control:focus {
