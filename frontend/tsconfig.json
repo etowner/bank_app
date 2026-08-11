@@ -1,30 +1,7 @@
 {
-  "compilerOptions": {
-    "target": "ES2023",
-    "module": "ESNext",
-    "lib": ["ES2023", "DOM", "DOM.Iterable"],
-    "skipLibCheck": true,
-
-    // Bundler Mode
-    "moduleResolution": "bundler",
-    "jsx": "react-jsx",
-    
-    "noEmit": true,
-    "allowJs": true,
-    "isolatedModules": true,
-    "allowImportingTsExtensions": true,
-    "forceConsistentCasingInFileNames": true,
-    "incremental": true,
-    "esModuleInterop": true,
-    "resolveJsonModule": true,
-  
-    // Linting
-    "strict": true,
-    // "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
-  },
-  "include": ["src", "tests"],
-  "exclude": ["node_modules", "tests"]
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ]
 }

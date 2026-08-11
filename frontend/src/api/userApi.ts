@@ -30,6 +30,3 @@ export const deleteUser = async () => {
   await api.delete('/api/v1/user');
 };
 
-export const deleteAllAccounts = async () => {
-  await api.delete('/api/v1/user/accounts/close-all');
-}

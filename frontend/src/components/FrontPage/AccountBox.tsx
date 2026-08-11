@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Alert, Button, Card, Form, Tab, Tabs } from "react-bootstrap";
-import { useUserContext } from "../../auth/UserContext";
+import { useUserContext } from "../../context/UserContext";
+import { Alert, Button, Form, Tab, Tabs, Card, Col, Row } from "react-bootstrap";
 
 interface AuthFormProps {
   onSubmit: (e: React.MouseEvent<HTMLButtonElement>) => void;

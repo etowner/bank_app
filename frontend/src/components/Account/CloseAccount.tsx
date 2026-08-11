@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Alert, Button, Modal } from "react-bootstrap";
-import { useUserContext } from "../../auth/UserContext";
+import { useUserContext } from "../../context/UserContext";
 import { deleteAccount } from "../../api/accountApi";
 import { getAxiosError } from "../../api/axiosConfig";
 

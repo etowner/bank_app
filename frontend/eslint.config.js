@@ -9,7 +9,7 @@ import eslintConfigPrettier from "eslint-config-prettier";
 import { defineConfig, globalIgnores } from "eslint/config";
 
 export default defineConfig([
-  globalIgnores( ['node_modules/', 'dist/', 'build/', 'coverage/', '*.min.js', 'src/tests/', 'vite.config.*',]),
+  globalIgnores( ['node_modules/', 'dist/', 'build/', 'coverage/',]),
 
   // Baseline 
   {
@@ -22,8 +22,8 @@ export default defineConfig([
   {
     files: ['**/*.{ts,tsx}'],
     extends: [
-      tseslint.configs.recommendedTypeChecked,
-      tseslint.configs.stylisticTypeChecked,
+      ...tseslint.configs.recommendedTypeChecked,
+      ...tseslint.configs.stylisticTypeChecked,
     ],
     languageOptions: {
       parserOptions: {
@@ -41,25 +41,16 @@ export default defineConfig([
   // React + Vite
   {
     files: ['**/*.{jsx,tsx}'],
-    // plugins: { 'react-refresh': reactRefresh },
     extends: [
       reactPlugin.configs.flat.recommended,
       reactPlugin.configs.flat['jsx-runtime'], // React 17+ 
-      reactRefresh.configs.recommended,
+      reactRefresh.configs.vite,
     ],
-    settings: { react: { version: '19.0' }, },
     rules: {
       'react/prop-types': 'off', // TypeScript handles this
-      // 'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
     },
   },
   reactHooks.configs.flat.recommended,
-  
-  {
-    files: ['*.js', '*.mjs', 'vite.config.*'],
-    extends: [tseslint.configs.disableTypeChecked],
-  },
-
   eslintConfigPrettier
 
 

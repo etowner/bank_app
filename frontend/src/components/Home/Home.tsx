@@ -7,6 +7,8 @@ import FinancialSummary from "./Summary";
 import Header from "./Header";
 import OpenAccount from "./OpenAccount";
 import PieChart from "./PieChart";
+import { useUserContext } from "../../context/UserContext";
+import { createAccount } from "../../api/accountApi";
 import Transfer from "./Transfer";
 import "../../styles/Home.css";
 

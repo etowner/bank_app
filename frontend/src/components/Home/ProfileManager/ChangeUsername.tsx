@@ -11,7 +11,7 @@ export default function ChangeUsername({ onClose, onSuccess }: { onClose: () => 
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleChangeUsername = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleChangeUsername = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError("");
     setSuccess("");
