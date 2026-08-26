@@ -46,6 +46,13 @@ export default defineConfig([
       reactPlugin.configs.flat['jsx-runtime'], // React 17+ 
       reactRefresh.configs.vite,
     ],
+    
+    settings: {
+      react: {
+        version: '19',
+      },
+    },
+
     rules: {
       'react/prop-types': 'off', // TypeScript handles this
     },

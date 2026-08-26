@@ -13,12 +13,8 @@ function App() {
         <Routes>
           <Route path="/" element={<FrontPage />} />
           <Route element={<ProtectedRoute />}>
-            <Route path="/home" element={
-             <Home />
-            } />
-            <Route path="/account/:accountNumber" element={
-             <Account />
-            } />
+            <Route path="/home" element={<Home />} />
+            <Route path="/account/:accountNumber" element={ <Account />} />
           </Route>
         </Routes>
       </UserContextProvider>

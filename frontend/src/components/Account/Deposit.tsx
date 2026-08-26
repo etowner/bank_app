@@ -31,8 +31,9 @@ export default function Deposit({ setAccount, fetchAccountData }: DepositProps) 
       setError(null);
       setAccount(updatedAccount);
       await fetchAccountData();
-    } catch {
+    } catch (error) {
       setError("Deposit failed. Please try again.");
+      console.error(error);
     } finally {
       setLoading(false);
     }

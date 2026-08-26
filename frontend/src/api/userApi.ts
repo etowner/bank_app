@@ -3,6 +3,8 @@ import api from './axiosConfig';
 
 export const getUser = async () => {
   const response = await api.get<User>('/api/v1/user');
+  //  console.log(' response:', response);
+  // console.log('getUser response:', response.data);
   return response.data;
 };
 

@@ -62,16 +62,9 @@ yarn-error.log*
 
 ### VS Code ###
 .vscode/
-docs/
 
 *.tsbuildinfo
 .vite/
 logs/
 plan.md
 docs/
-
-backend/src/main/resources/application.properties.dev
-
-backend/src/test
-
-*.tsbuildinfo

@@ -1,25 +1,22 @@
 import { useEffect, useState } from "react";
-import { Alert, Card, Col, Container, Row } from "react-bootstrap";
-import { useUserContext } from "../../auth/UserContext";
-import { createAccount } from "../../api/accountApi";
+import { Card, Col, Container, Row, Alert } from "react-bootstrap";
+import Transfer from "./Transfer";
 import AccountList from "./AccountList";
-import FinancialSummary from "./Summary";
 import Header from "./Header";
 import OpenAccount from "./OpenAccount";
 import PieChart from "./PieChart";
 import { useUserContext } from "../../context/UserContext";
 import { createAccount } from "../../api/accountApi";
-import Transfer from "./Transfer";
-import "../../styles/Home.css";
-
+import FinancialSummary from "./Summary";
 const Home = () => {
   const { user, username, fetchUser } = useUserContext();
   const accounts = user?.accounts ?? [];
+  const numOfAccounts = user?.numOfAccounts ?? 0;
   const [error, setError] = useState<string | null>(null);
 
   const openAcc = async (type: string) => {
-    if (accounts.length >= 3) {
-      setError("You can only have 3 accounts.");
+    if (numOfAccounts >= 3) {
+      setError("You can only have 3 accounts");
       return;
     }
     try {

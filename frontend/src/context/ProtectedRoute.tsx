@@ -23,6 +23,7 @@ const ProtectedRoute = () => {
   }
 
   if (!user) {
+    console.log("Navigating to / because user is null");
     return <Navigate to="/" replace />;
   }
   

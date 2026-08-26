@@ -15,15 +15,20 @@ export default function CloseAccount() {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const navigate = useNavigate();
+  const { accountNumber } = useParams<{ accountNumber: string }>();
+  const [error, setError] = useState<string | null>(null);
 
-  const closeAccount = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    setLoading(true);
+
+
+  const closeAccount =  async (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    
     try {
       await deleteAccount(accountNumber!);
-      await fetchUser();
-      void navigate("/home");
-    } catch (err: unknown) {
+      void navigate(`/home`);
+      // void fetchUser(); 
+    } catch (err) {
       setError(getAxiosError(err));
       handleClose();
     } finally {
@@ -55,6 +60,7 @@ export default function CloseAccount() {
           >
             {loading ? "Closing…" : "Close Account"}
           </Button>
+           {error && <Alert variant="danger">{error}</Alert>}
         </Modal.Footer>
       </Modal>
     </>

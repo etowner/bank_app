@@ -4,7 +4,6 @@ import { changeUsername } from "../../../api/userApi";
 import { getAxiosError } from "../../../api/axiosConfig";
 
 export default function ChangeUsername({ onClose, onSuccess }: { onClose: () => void; onSuccess?: () => void }) {
-
   const [currentPassword, setCurrentPassword] = useState("");
   const [newUsername, setNewUsername] = useState("");
   const [error, setError] = useState("");

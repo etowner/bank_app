@@ -51,7 +51,7 @@ export default function Transfer() {
       </Card.Header>
       <Card.Body>
         <Form>
-          <Form.Group className="mb-3">
+          <Form.Group controlId="transfer-from" className="mb-3">
             <Form.Label>From account</Form.Label>
             <Form.Control
               value={accountNumber1}
@@ -59,7 +59,7 @@ export default function Transfer() {
               placeholder="Account number"
             />
           </Form.Group>
-          <Form.Group className="mb-3">
+          <Form.Group  controlId="transfer-to" className="mb-3">
             <Form.Label>To account</Form.Label>
             <Form.Control
               value={accountNumber2}
@@ -67,7 +67,7 @@ export default function Transfer() {
               placeholder="Account number"
             />
           </Form.Group>
-          <Form.Group className="mb-4">
+          <Form.Group  controlId="transfer-amount"className="mb-4">
             <Form.Label>Amount</Form.Label>
             <Form.Control
               type="number"

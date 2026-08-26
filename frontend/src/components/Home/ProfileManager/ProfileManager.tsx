@@ -4,11 +4,11 @@ import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../../../context/UserContext";
 import ChangePassword from "./ChangePassword";
 import ChangeUsername from "./ChangeUsername";
-import { deleteUser } from "../../../api/userApi";
+import { deleteUser, logoutUser } from "../../../api/userApi";
 import { deleteAllAccounts } from "../../../api/accountApi";
 
 export default function ProfileManager() {
-  const { username, logout, setUser } = useUserContext();
+  const { username, setUser } = useUserContext();
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -26,6 +26,12 @@ export default function ProfileManager() {
 
   const navigate = useNavigate();
 
+ const logout = async() => {
+    void await logoutUser();
+    setUser(null);
+    void navigate('/');
+  };
+ 
   const handleLogOut = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     void logout();
@@ -139,7 +145,7 @@ export default function ProfileManager() {
               </Modal.Body>
               <Modal.Footer>
                 <Button variant="primary" onClick={handleLogOut}>
-                  Log Out
+                  Yes
                 </Button>
               </Modal.Footer>
             </Modal>

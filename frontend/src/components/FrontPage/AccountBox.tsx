@@ -1,8 +1,10 @@
 import { useState } from "react";
-import { useUserContext } from "../../context/UserContext";
+import { useNavigate } from "react-router-dom";
 import { Alert, Button, Form, Tab, Tabs, Card, Col, Row } from "react-bootstrap";
-
+import { registerUser, loginUser } from "../../api/userApi";
+import { getAxiosError } from "../../api/axiosConfig";
 interface AuthFormProps {
+  idPrefix: string; 
   onSubmit: (e: React.MouseEvent<HTMLButtonElement>) => void;
   username: string;
   password: string;
@@ -13,6 +15,7 @@ interface AuthFormProps {
 }
 
 const AuthForm = ({
+  idPrefix,
   onSubmit,
   username,
   password,
@@ -22,7 +25,7 @@ const AuthForm = ({
   isLogin,
 }: AuthFormProps) => (
   <Form>
-    <Form.Group className="mb-3">
+    <Form.Group controlId={`${idPrefix}-username`} className="mb-3">
       <Form.Label>Username</Form.Label>
       <Form.Control
         autoComplete="username"
@@ -31,7 +34,7 @@ const AuthForm = ({
         placeholder="Enter your username"
       />
     </Form.Group>
-    <Form.Group className="mb-4">
+    <Form.Group controlId={`${idPrefix}-password`}className="mb-4">
       <Form.Label>Password</Form.Label>
       <Form.Control
         autoComplete={isLogin ? "current-password" : "new-password"}
@@ -55,10 +58,35 @@ const AuthForm = ({
 );
 
 const AccountBox = () => {
-  const { login, register, error, setError } = useUserContext();
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [activeTab, setActiveTab] = useState("create");
+  const [error, setError] = useState<string | null>(null);
+  const [username, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [activeTab, setActiveTab] = useState<string>("create");
+  const navigate = useNavigate();
+  
+  const register = async (username: string, password: string) => {
+    setError(null);
+    try {
+      await registerUser(username, password);
+    } catch (err) {
+      setError(getAxiosError(err));
+      console.error("Registration error:", err);
+      return; 
+    }
+    void navigate(`/home`);
+  };
+
+  const login = async (username: string, password: string) => {
+    setError(null);
+    try {
+      await loginUser(username, password );
+    } catch (err) {
+      setError(getAxiosError(err));
+      console.error("Login error:", err);
+      return; 
+    }
+    void navigate(`/home`);
+  };
 
   const handleCreate = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -79,9 +107,9 @@ const AccountBox = () => {
   return (
     <Card className="account-box">
       <Card.Body className="p-4">
-        <Tabs activeKey={activeTab} onSelect={handleTabSwitch} className="mb-4" fill>
+        <Tabs activeKey={activeTab} onSelect={handleTabSwitch} unmountOnExit className="mb-4" fill>
           <Tab eventKey="create" title="Create Account">
-            <AuthForm
+            <AuthForm idPrefix="create"
               onSubmit={handleCreate}
               username={username}
               password={password}
@@ -92,7 +120,7 @@ const AccountBox = () => {
             />
           </Tab>
           <Tab eventKey="log" title="Log In">
-            <AuthForm
+            <AuthForm idPrefix="log"
               onSubmit={handleLog}
               username={username}
               password={password}
