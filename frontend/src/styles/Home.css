@@ -20,6 +20,7 @@
   align-items: center;
   padding: 0.625rem 0;
   border-bottom: 1px solid var(--color-border);
+  height: 4rem;
 }
 
 .account-row:last-child {
@@ -34,12 +35,12 @@
 
 .account-type {
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: var(--color-text-primary);
 }
 
 .account-number {
-  font-size: 0.78rem;
+  font-size: 0.85rem;
   color: var(--color-text-muted);
 }
 
@@ -48,13 +49,24 @@
   color: var(--color-text-primary);
 }
 
-.transfer-card {
-  max-width: 10rem;
+.account-options {
+  align-self: center;
+  text-align: center;
+  width: 65%;
   margin: 0 auto;
-  justify-self: center;
-  display: flex;
-  flex-direction: column;
- 
+}
+
+.transfer-card {
+  max-width: 26rem;
+  margin: 0 auto; 
+  text-align: center;
+}
+
+.transfer-card .btn-dark {
+  align-self: center;
+  height: 2.5rem;
+  width: 50%;
+  font-size: 1.125rem;
 }
 
 /* ── Financial summary card ── */

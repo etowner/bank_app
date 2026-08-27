@@ -16,7 +16,7 @@ export default function AccountList({ accounts }: { accounts: Account[] }) {
         <div key={account.accountNumber} className="account-row">
           <div className="account-info">
             <span className="account-type">{account.type}</span>
-            <span className="account-number">#{account.accountNumber}</span>
+            <span className="account-number"> #{account.accountNumber}</span>
           </div>
           <div className="d-flex align-items-center gap-3">
             <span className="account-balance">{formatCurrency(account.balance)}</span>

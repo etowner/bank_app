@@ -1,16 +1,15 @@
 import { Accordion, Button, ListGroup, useAccordionButton, AccordionContext} from "react-bootstrap";
 import { use } from "react";
+
 function CustomToggle({ children, eventKey, onToggle }: 
   { children: React.ReactNode; eventKey: string; onToggle: () => void }) {
   
-
- 
   const { activeEventKey } = use(AccordionContext);
-   const showAcc = useAccordionButton(eventKey, onToggle);
-    const isExpanded = activeEventKey === eventKey;
+  const showAcc = useAccordionButton(eventKey, onToggle);
+  const isExpanded = activeEventKey === eventKey;
   
   return (
-    <Button variant="dark" onClick={showAcc} className="mt-3">
+    <Button variant="dark" onClick={showAcc} className="mt-3 d-block mx-auto" aria-expanded={isExpanded}>
       {children}
     </Button>
   );
@@ -30,7 +29,7 @@ export default function OpenAccount({ openAcc, setError }: OpenAccountProps) {
       </CustomToggle>
       <Accordion.Collapse eventKey="0">
         <div className="mt-2">
-          <ListGroup>
+          <ListGroup className="account-options">
             <ListGroup.Item action onClick={() => openAcc("Checkings")}>
               Checkings
             </ListGroup.Item>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Card, Col, Form, Row, Alert } from "react-bootstrap";
+import { Button, Card, Form, Alert } from "react-bootstrap";
 import { useUserContext } from "../../context/UserContext";
 import { transfer } from "../../api/transactionApi";
 import { getAxiosError } from "../../api/axiosConfig";
@@ -78,7 +78,7 @@ export default function Transfer() {
               step="0.01"
             />
           </Form.Group>
-          <div className="bank-card transfer-card">
+          <div className="transfer-card">
             <Button
               variant="dark"
               onClick={(e) => void handleTransferClick(e)}

@@ -16,13 +16,7 @@ import "../../styles/Account.css";
 
 const isCredit = (type: string) => type.toLowerCase() === "deposit";
 
-function CustomToggle({
-  children,
-  eventKey,
-}: {
-  children: React.ReactNode;
-  eventKey: string;
-}) {
+function CustomToggle({children, eventKey, }: { children: React.ReactNode; eventKey: string; }) {
   const showAction = useAccordionButton(eventKey);
   return (
     <Button variant="dark" onClick={showAction} className="mb-3">
@@ -52,7 +46,8 @@ const AccountPage = () => {
   }, [accountNumber]);
 
   useEffect(() => {
-    void fetchAccountData();
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    void fetchAccountData()
   }, [fetchAccountData]);
 
   return (
@@ -124,7 +119,7 @@ const AccountPage = () => {
                 <Accordion defaultActiveKey="2">
                   <CustomToggle eventKey="0">Deposit</CustomToggle>
                   <Accordion.Collapse eventKey="0">
-                    <div className="mb-3">
+                    <div className="mt-3 mb-3">
                       <Deposit
                         setAccount={setAccount}
                         fetchAccountData={fetchAccountData}
@@ -133,7 +128,7 @@ const AccountPage = () => {
                   </Accordion.Collapse>
                   <CustomToggle eventKey="1">Withdraw</CustomToggle>
                   <Accordion.Collapse eventKey="1">
-                    <div className="mb-3">
+                    <div className="mt-3 mb-3">
                       <Withdraw
                         balance={account?.balance}
                         setAccount={setAccount}

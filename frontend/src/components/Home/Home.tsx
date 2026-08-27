@@ -8,6 +8,8 @@ import PieChart from "./PieChart";
 import { useUserContext } from "../../context/UserContext";
 import { createAccount } from "../../api/accountApi";
 import FinancialSummary from "./Summary";
+import "../../styles/Home.css";
+
 const Home = () => {
   const { user, username, fetchUser } = useUserContext();
   const accounts = user?.accounts ?? [];
@@ -21,10 +23,11 @@ const Home = () => {
     }
     try {
       await createAccount(type);
-      await fetchUser();
+      
     } catch {
       setError("Failed to open account. Please try again later.");
     }
+    void fetchUser();
   };
 
   useEffect(() => {
@@ -72,9 +75,9 @@ const Home = () => {
             </Card>
           </Col>
           <Col>
-            <Card className="bank-card">
+            {/* <Card className="bank-card">
               <FinancialSummary accounts={accounts} />
-            </Card>
+            </Card> */}
           </Col>
         </Row>
       </Container>

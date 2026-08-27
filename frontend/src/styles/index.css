@@ -81,6 +81,13 @@ code {
   box-shadow: var(--shadow-card-hover);
 }
 
+.alert {
+  align-self: center;
+  width: 50%;
+  text-align: center;
+  margin: 0 auto;
+}
+
 /* Transaction amount colours */
 .tx-credit { color: var(--color-success); font-weight: 600; }
 .tx-debit  { color: var(--color-danger);  font-weight: 600; }
