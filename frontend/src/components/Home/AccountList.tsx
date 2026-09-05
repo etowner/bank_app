@@ -18,10 +18,9 @@ export default function AccountList({ accounts }: { accounts: Account[] }) {
             <span className="account-type">{account.type}</span>
             <span className="account-number"> #{account.accountNumber}</span>
           </div>
-          <div className="d-flex align-items-center gap-3">
+          <div className="account-view d-flex align-items-center gap-3">
             <span className="account-balance">{formatCurrency(account.balance)}</span>
             <Button
-              variant="outline-dark"
               size="sm"
               onClick={() => void navigate(`/account/${account.accountNumber}`)}
             >

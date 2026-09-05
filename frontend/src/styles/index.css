@@ -1,4 +1,5 @@
 :root {
+  color-scheme: light dark;
   /* Brand palette */
   --color-primary:      #1b3a5c;
   --color-primary-dark: #0d2137;
@@ -7,30 +8,34 @@
   --color-gold-light:   #efc45c;
 
   /* Surfaces */
-  --color-surface:      #f0f4f8;
-  --color-card:         #ffffff;
+  --color-surface: light-dark(#f0f4f8, #0f1923);
+  --color-card:    light-dark(#ffffff, #1a2736);
 
   /* Text */
-  --color-text-primary: #1a2332;
-  --color-text-muted:   #6b7c93;
+  --color-text-primary: light-dark(#1a2332, #e8edf2);
+  --color-text-muted:  light-dark(#6b7c93, #8fa3b8);
   --color-text-on-dark: #ffffff;
 
   /* Semantic */
   --color-success:      #2e7d32;
   --color-danger:       #c62828;
-  --color-border:       #dde3ea;
+  --color-border:      light-dark(#dde3ea, #2a3d52);
 
   /* Elevation */
-  --shadow-card:        0 2px 8px  rgba(27, 58, 92, 0.08);
-  --shadow-card-hover:  0 4px 16px rgba(27, 58, 92, 0.14);
+  --shadow-card:       0 2px 8px  light-dark(rgba(27, 58, 92, 0.08), rgba(0, 0, 0, 0.55));
+  --shadow-card-hover: 0 4px 16px light-dark(rgba(27, 58, 92, 0.14), rgba(0, 0, 0, 0.65));
   --radius-card:        0.625rem;
 
   /* ── Bootstrap 5 overrides ─────────────────────────────────── */
-  --bs-body-bg:    #f0f4f8;
-  --bs-body-color: #1a2332;
-  --bs-dark:       #1b3a5c;
-  --bs-dark-rgb:   27, 58, 92;
+  --bs-body-bg:    light-dark(#f0f4f8, #0f1923);
+  --bs-body-color: light-dark(#1a2332, #e8edf2);
+  --bs-card-bg: var(--color-card);
+  --bs-card-cap-bg: var(--color-card);
+  --bs-border-color: var(--color-border);
 }
+
+[data-bs-theme="dark"]  { color-scheme: dark; }
+[data-bs-theme="light"] { color-scheme: light; }
 
 /* ─── Base ──────────────────────────────────────────────────── */
 body {
@@ -51,9 +56,9 @@ code {
 /* ─── Shared component classes ──────────────────────────────── */
 
 .card-header-primary {
-  background-color: var(--color-primary);
-  color: var(--color-text-on-dark);
-  border-bottom: 3px solid var(--color-gold);
+  background-color: var(--color-primary) !important;
+  color: #f0f4f8 !important;
+  border-bottom: 3px solid var(--color-gold) !important;
   padding: 0.875rem 1.25rem;
 }
 
@@ -69,7 +74,7 @@ code {
 
 /* Consistent border, radius, shadow across all cards */
 .bank-card {
-  background-color: var(--color-card);
+  background-color: var(--color-card) !important;
   border: 1px solid var(--color-border) !important;
   border-radius: var(--radius-card) !important;
   box-shadow: var(--shadow-card);
@@ -86,6 +91,11 @@ code {
   width: 50%;
   text-align: center;
   margin: 0 auto;
+}
+
+.theme-toggle .bi {
+  color: var(--color-gold);
+  font-size: 1.25rem;
 }
 
 /* Transaction amount colours */
@@ -106,16 +116,4 @@ code {
 .navbar.navbar-dark {
   background-color: var(--color-primary);
   border-bottom: 3px solid var(--color-gold);
-}
-
-[data-theme="dark"] {
-  --color-surface:      #0f1923;
-  --color-card:         #1a2736;
-  --color-text-primary: #e8edf2;
-  --color-text-muted:   #8fa3b8;
-  --color-border:       #2a3d52;
-
-  /* Bootstrap picks these up too */
-  --bs-body-bg:    #0f1923;
-  --bs-body-color: #e8edf2;
 }

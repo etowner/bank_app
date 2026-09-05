@@ -126,6 +126,7 @@ const AccountPage = () => {
                       />
                     </div>
                   </Accordion.Collapse>
+                  <Row></Row>
                   <CustomToggle eventKey="1">Withdraw</CustomToggle>
                   <Accordion.Collapse eventKey="1">
                     <div className="mt-3 mb-3">

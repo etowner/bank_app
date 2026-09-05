@@ -10,9 +10,8 @@
 }
 
 .home-welcome-name {
-  color: var(--color-primary);
+  color: var(--color-text-primary);
 }
-
 /* ── Account list rows ── */
 .account-row {
   display: flex;
@@ -47,6 +46,22 @@
 .account-balance {
   font-weight: 600;
   color: var(--color-text-primary);
+}
+
+.account-view {
+  color: var(--color-text-primary);
+}
+
+.account-view .btn {
+  color: var(--color-text-primary);
+  --bs-btn-bg:                  var(--color-card);
+  --bs-btn-border-color:        var(--color-text-primary);
+}
+
+.account-view .btn:hover {
+  color: var(--color-card);
+  background-color:                  var(--color-text-primary);
+  border-color:        var(--color-text-primary);
 }
 
 .account-options {

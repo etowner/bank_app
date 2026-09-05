@@ -3,13 +3,11 @@
   background: linear-gradient(
     150deg,
     var(--color-primary-dark) 0%,
-    var(--color-primary)      55%,
-    #2a5298                   100%
+    var(--color-primary)      100%,
+    #2a5298                   0%
   );
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   gap: 2rem;
   text-align: center;
 }
@@ -32,6 +30,12 @@
   letter-spacing: 0.02em;
 }
 
+.Frontpage-toggle {
+  align-self: flex-end;
+  color: var(--color-text-on-dark);
+  padding: 0.5rem;
+}
+
 /* ── Login card ─────────────────────────────────────────────── */
 
 /* min() caps at 35rem on large screens, shrinks to 90vw on small */
@@ -41,16 +45,23 @@
   border-top: 3px solid var(--color-gold) !important;
   border-radius: var(--radius-card) !important;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  align-self: center;
 }
 
 
 .account-box .nav-tabs {
-  --bs-nav-tabs-link-active-color:        var(--color-primary);
-  --bs-nav-tabs-link-active-border-color: var(--color-primary)
-                                          var(--color-primary)
+  --bs-nav-tabs-link-active-color:        var(--color-text-primary);
+  --bs-nav-tabs-link-active-border-color: var(--color-text-primary)
+                                          var(--color-text-primary)
                                           var(--color-card);
-  --bs-nav-tabs-border-color:             var(--color-border);
+  --bs-nav-tabs-border-color:             var(--color-text-primary);
   --bs-nav-link-color:                    var(--color-text-muted);
+  --bs-body-bg:                           var(--color-card);
+}
+
+.account-box .card-body {
+  border-radius: var(--radius-card) !important;
+  background-color: var(--color-card);
 }
 
 .account-box .form-control {

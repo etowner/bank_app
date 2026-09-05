@@ -34,7 +34,7 @@ const AuthForm = ({
         placeholder="Enter your username"
       />
     </Form.Group>
-    <Form.Group controlId={`${idPrefix}-password`}className="mb-4">
+    <Form.Group controlId={`${idPrefix}-password`} className="mb-4">
       <Form.Label>Password</Form.Label>
       <Form.Control
         autoComplete={isLogin ? "current-password" : "new-password"}
