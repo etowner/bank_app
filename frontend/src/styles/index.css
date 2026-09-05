@@ -93,14 +93,23 @@ code {
   margin: 0 auto;
 }
 
+/* -- Header ------- */
+.navbar .navbar-brand {
+  color: var(--color-gold);
+  font-size: 2rem;
+  font-weight: 700;
+  padding-left: 5rem;
+}
+
+.navbar.navbar-dark {
+  background-color: var(--color-primary);
+  border-bottom: 3px solid var(--color-gold);
+}
+
 .theme-toggle .bi {
   color: var(--color-gold);
   font-size: 1.25rem;
 }
-
-/* Transaction amount colours */
-.tx-credit { color: var(--color-success); font-weight: 600; }
-.tx-debit  { color: var(--color-danger);  font-weight: 600; }
 
 /* ── Bootstrap .btn-dark override ─────────────────────────────────── */
 .transfer-card .btn-dark,
@@ -113,7 +122,3 @@ code {
   --bs-btn-active-border-color: var(--color-primary-dark);
 }
 
-.navbar.navbar-dark {
-  background-color: var(--color-primary);
-  border-bottom: 3px solid var(--color-gold);
-}

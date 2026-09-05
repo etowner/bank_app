@@ -84,6 +84,32 @@
   font-size: 1.125rem;
 }
 
+/* ── Profile buttons ── */
+.profile {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  font-size: 1.125rem;
+  padding-right: 1rem;
+}
+
+.profile .btn-dark {
+  color: var(--color-gold);
+  --bs-btn-bg:                 var(--color-primary-dark);
+  --bs-btn-border-color:        var(--color-primary-dark);
+}
+
+.profile .btn-dark:hover {
+  color: var(--color-gold-light);
+  background-color: var(--color-primary-dark);
+  border-color:  var(--color-gold-light);
+  
+}
+/* .profile .btn-dark .bi {
+
+} */
+
+
 /* ── Financial summary card ── */
 .summary-total {
   display: flex;
