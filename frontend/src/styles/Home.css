@@ -93,7 +93,7 @@
   font-size: 1.125rem;
 }
 
-/* ── Profile buttons ── */
+/* ── Profile ── */
 .profile {
   display: flex;
   justify-content: center;
@@ -112,5 +112,34 @@
   color: var(--color-gold-light);
   background-color: var(--color-primary-dark);
   border-color:  var(--color-gold-light);
-  
+}
+
+.offcanvas {
+  background-color: var(--color-primary-dark);
+  color: var(--color-text-on-dark);
+}
+
+.offcanvas-header {
+  border-bottom:  3px solid var(--color-gold) !important;
+  box-shadow: var(--shadow-card);
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.offcanvas .list-group-item {
+  background-color: var(--color-primary);
+  color: var(--color-text-on-dark);
+  border-color: var(--color-primary-dark);
+}
+
+.offcanvas .list-group-item:first-child {
+  border-bottom: 1px solid var(--color-gold-light)
+}
+
+.offcanvas .list-group-item:hover {
+  background-color: var(--color-primary-dark);
+  color: var(--color-text-on-dark);
 }
