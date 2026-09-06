@@ -1,25 +1,14 @@
-
-import { Nav, Navbar, Container } from "react-bootstrap";
+import { Nav, Navbar } from "react-bootstrap";
 import ProfileManager from "./ProfileManager/ProfileManager";
+import ThemeToggle from "./ThemeToggle";
 
-const Header = () => {
-  return (
-    <div id="#home" style={{ background: "#ffffff" }}>
-      <Navbar bg="dark" variant="dark" className="mb-5">
-        <Container>
-          <Navbar.Brand> Bank App</Navbar.Brand>
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto"></Nav>
-          </Navbar.Collapse>
-          <Navbar.Collapse className="justify-content-end">
-            <Navbar.Text>
-              Signed in as:
-              <ProfileManager/>
-            </Navbar.Text>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
-    </div>
-  );
-};
+const Header = () => (
+  <Navbar variant="dark" className="mb-4">
+    <Navbar.Brand>Aegis</Navbar.Brand>
+    <Nav className="ms-auto align-items-center">
+      <ThemeToggle />
+      <ProfileManager />
+    </Nav>
+  </Navbar>
+);
 export default Header;

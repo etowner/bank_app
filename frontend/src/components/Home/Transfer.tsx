@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Card, Col, Form, Row, Alert } from "react-bootstrap";
+import { Button, Card, Form, Alert } from "react-bootstrap";
 import { useUserContext } from "../../context/UserContext";
 import { transfer } from "../../api/transactionApi";
 import { getAxiosError } from "../../api/axiosConfig";
@@ -9,26 +9,23 @@ export default function Transfer() {
   const [amount, setAmount] = useState("");
   const [accountNumber1, setAccountNumber1] = useState("");
   const [accountNumber2, setAccountNumber2] = useState("");
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const handleTransferClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-    
-    const parsedAmount = parseFloat(amount);
+  const handleTransferClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
 
+    const parsedAmount = parseFloat(amount);
     if (isNaN(parsedAmount) || parsedAmount <= 0) {
-      setError("Invalid transfer amount. Please enter a valid amount.");
+      setError("Enter a valid amount.");
       return;
     }
-
+    if (!accountNumber1 || !accountNumber2) {
+      setError("Please enter both account numbers.");
+      return;
+    }
     if (accountNumber1 === accountNumber2) {
       setError("Source and destination accounts must be different.");
-      return;
-    }
-
-    if (!accountNumber1 || !accountNumber2) {
-      setError("Please enter both account IDs.");
       return;
     }
 
@@ -42,78 +39,61 @@ export default function Transfer() {
       await fetchUser();
     } catch (err) {
       setError(getAxiosError(err));
-      console.error("Transfer error:", err);
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div>
-      <Card border="dark">
-        <Card.Header style={{ color: "white", backgroundColor: "#282c34" }}>
-          <h2>Transfer</h2>
-        </Card.Header>
-        <Card.Body>
-          <Form.Group controlId="transfer-from" as={Row} className="mb-1">
-            <Form.Label column sm={5}>
-              <h3>Transfer from:</h3>
-            </Form.Label>
-            <Col sm={1}></Col>
-            <Col sm={4}>
-              <Form.Control
-                value={accountNumber1}
-                onChange={(e) => setAccountNumber1(e.target.value)}
-              />
-            </Col>
+    <Card className="bank-card">
+      <Card.Header className="card-header-primary">
+        <h4>Transfer</h4>
+      </Card.Header>
+      <Card.Body>
+        <Form>
+          <Form.Group controlId="transfer-from" className="mb-3">
+            <Form.Label>From account</Form.Label>
+            <Form.Control
+              value={accountNumber1}
+              onChange={(e) => setAccountNumber1(e.target.value)}
+              placeholder="Account number"
+            />
           </Form.Group>
-          <Form.Group controlId="transfer-to" as={Row} className="mb-1">
-            <Form.Label column sm={5}>
-              <h3> Transfer to: </h3>
-            </Form.Label>
-            <Col sm={1}></Col>
-            <Col sm={4}>
-              <Form.Control
-                value={accountNumber2}
-                onChange={(e) => setAccountNumber2(e.target.value)}
-              />
-            </Col>
+          <Form.Group  controlId="transfer-to" className="mb-3">
+            <Form.Label>To account</Form.Label>
+            <Form.Control
+              value={accountNumber2}
+              onChange={(e) => setAccountNumber2(e.target.value)}
+              placeholder="Account number"
+            />
           </Form.Group>
-          <Form.Group controlId="transfer-amount" as={Row} className="mb-1">
-            <Form.Label column sm={6}>
-              <h3>Transfer amount:</h3>
-            </Form.Label>
-            <Col sm={4}>
-              <Form.Control
-                type="number"
-                value={amount}
-                onChange={(e) => setAmount(e.target.value)}
-                placeholder="Enter amount"
-                min="0"
-                step="0.01"
-              />
-            </Col>
+          <Form.Group  controlId="transfer-amount"className="mb-4">
+            <Form.Label>Amount</Form.Label>
+            <Form.Control
+              type="number"
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
+              placeholder="0.00"
+              min="0"
+              step="0.01"
+            />
           </Form.Group>
-          <Row className="justify-content-md-center">
-            <Col sm={2}>
-              <Button
-                variant="dark"
-                onClick={(e) => void handleTransferClick(e)}
-                className="mb-3"
-              >
-                {loading ? <>Loading..</> : <>Submit</>}
-              </Button>
-            </Col>
-          </Row>
-          {
-            <Row className="justify-content-md-center">
-              <Col sm={7}>
-                {error && <Alert variant="danger">{error}</Alert>}
-              </Col>
-            </Row>
-          }
-        </Card.Body>
-      </Card>
-    </div>
+          <div className="transfer-card">
+            <Button
+              variant="dark"
+              onClick={(e) => void handleTransferClick(e)}
+              disabled={loading}
+            >
+              {loading ? "Processing…" : "Transfer"}
+            </Button>
+          </div>
+          {error && (
+            <Alert variant="danger" className="mt-3 mb-0">
+              {error}
+            </Alert>
+          )}
+        </Form>
+      </Card.Body>
+    </Card>
   );
 }

@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { Card, Col, Container, Row, Alert } from "react-bootstrap";
-import { useUserContext } from "../../context/UserContext";
-import { createAccount } from "../../api/accountApi";
 import Transfer from "./Transfer";
+import AccountList from "./AccountList";
 import Header from "./Header";
 import OpenAccount from "./OpenAccount";
 import PieChart from "./PieChart";
-import AccountList from "./AccountList";
+import { useUserContext } from "../../context/UserContext";
+import { createAccount } from "../../api/accountApi";
 import "../../styles/Home.css";
 
 const Home = () => {
@@ -14,21 +14,19 @@ const Home = () => {
   const accounts = user?.accounts ?? [];
   const numOfAccounts = user?.numOfAccounts ?? 0;
   const [error, setError] = useState<string | null>(null);
-  
+
   const openAcc = async (type: string) => {
     if (numOfAccounts >= 3) {
       setError("You can only have 3 accounts");
       return;
     }
     try {
-      const newAccount = await createAccount(type);
-      console.log("Opened account:", newAccount);
-      await fetchUser();
-    } catch (err) {
+      await createAccount(type);
+      
+    } catch {
       setError("Failed to open account. Please try again later.");
-      console.error(err);
     }
-
+    void fetchUser();
   };
 
   useEffect(() => {
@@ -38,33 +36,44 @@ const Home = () => {
   return (
     <div className="Home">
       <Header />
-      <Container>
-        <Row className="mb-5">
-          <h2>Welcome {username}</h2>
-        </Row>
-        <Row xs={1} md={2} lg={2} className="g-4">
-          {/* Lists Accounts and provides open account options */}
-          <Col key={1}>
-            <Card border="dark">
-              <AccountList accounts={accounts} />
-              <OpenAccount
-                openAcc={(type) => void openAcc(type)}
-                setError={setError}
-              />
-              {error && (
-                <Alert className="" variant="danger">
-                  {error}
-                </Alert>
-              )}
+      <Container className="py-4">
+        <div className="home-welcome mb-4">
+          Welcome, {username}
+        </div>
+        <Row xs={1} md={2} className="g-4">
+          <Col>
+            <Card className="bank-card">
+              <Card.Header className="card-header-primary">
+                <h4>Accounts</h4>
+              </Card.Header>
+              <Card.Body>
+                <AccountList accounts={accounts} />
+                <OpenAccount
+                  openAcc={(type) => void openAcc(type)}
+                  setError={setError}
+                />
+                {error && (
+                  <Alert variant="danger" className="mb-0 mt-2">
+                    {error}
+                  </Alert>
+                )}
+              </Card.Body>
             </Card>
           </Col>
-          <Col key={2}>
+          <Col>
             <Transfer />
           </Col>
-          <Col key={3}>
-            <Card style={{ width: "32rem" }} className="mb-2">
-              <PieChart accounts={accounts} />
+          <Col>
+            <Card className="bank-card">
+              <Card.Header className="card-header-primary">
+                <h4>Balance Distribution</h4>
+              </Card.Header>
+              <Card.Body>
+                <PieChart accounts={accounts} />
+              </Card.Body>
             </Card>
+          </Col>
+          <Col>
           </Col>
         </Row>
       </Container>
