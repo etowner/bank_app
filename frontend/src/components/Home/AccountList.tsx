@@ -1,41 +1,34 @@
-import { Button, Card, Col, Row } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import type { Account } from "../../lib/types";
+import { formatCurrency } from "../../lib/utils";
 
 export default function AccountList({ accounts }: { accounts: Account[] }) {
   const navigate = useNavigate();
 
-  function handleAccount(accountNumber: string) {
-    void navigate(`/account/${accountNumber}`);
+  if (accounts.length === 0) {
+    return <p className="text-muted mb-0">No accounts yet. Open one below.</p>;
   }
 
   return (
-    <div>
-      <Card.Header style={{ color: "white", backgroundColor: "#282c34" }}>
-        <h2>Accounts</h2>
-      </Card.Header>
-      <Card.Body>
-        {accounts?.map((account) => {
-          return (
-            <h3 key={account.accountNumber}>
-              <Row className="mb-3">
-                <Col sm={6}>
-                  {account.type} - {account.accountNumber}
-                </Col>
-                <Col sm={5} className="justify-content-end">
-                  {account.balance}
-                  <Button
-                    variant="link"
-                    onClick={() => handleAccount(account.accountNumber)}
-                  >
-                    View
-                  </Button>
-                </Col>
-              </Row>
-            </h3>
-          );
-        })}
-      </Card.Body>
-    </div>
+    <>
+      {accounts.map((account) => (
+        <div key={account.accountNumber} className="account-row">
+          <div className="account-info">
+            <span className="account-type">{account.type}</span>
+            <span className="account-number"> #{account.accountNumber}</span>
+          </div>
+          <div className="account-view d-flex align-items-center gap-3">
+            <span className="account-balance">{formatCurrency(account.balance)}</span>
+            <Button
+              size="sm"
+              onClick={() => void navigate(`/account/${account.accountNumber}`)}
+            >
+              View
+            </Button>
+          </div>
+        </div>
+      ))}
+    </>
   );
 }

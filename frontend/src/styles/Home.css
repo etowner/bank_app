@@ -1,5 +1,145 @@
 .Home {
-  text-align: center;
-  background-color: slategray;
+  min-height: 100vh;
+  background-color: var(--color-surface);
 }
 
+.home-welcome {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+/* ── Account list rows ── */
+.account-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.625rem 0;
+  border-bottom: 1px solid var(--color-border);
+  height: 4rem;
+}
+
+.account-row:last-child {
+  border-bottom: none;
+}
+
+.account-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.account-type {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--color-text-primary);
+}
+
+.account-number {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.account-balance {
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.account-view {
+  color: var(--color-text-primary);
+}
+
+.account-view .btn {
+  color: var(--color-text-primary);
+  --bs-btn-bg:                  var(--color-card);
+  --bs-btn-border-color:        var(--color-text-primary);
+}
+
+.account-view .btn:hover {
+  color: var(--color-card);
+  background-color: var(--color-text-primary);
+  border-color:        var(--color-text-primary);
+}
+
+.account-options {
+  align-self: center;
+  text-align: center;
+  width: 65%;
+  margin: 0 auto;
+}
+
+.account-options .list-group-item {
+  color: var(--color-text-on-dark);
+  background-color: var(--color-primary);
+  border: 0.5px solid var(--color-primary-dark);
+} 
+
+.account-options .list-group-item:hover {
+  background-color: var(--color-primary-dark);
+  color: var(--color-text-on-dark);
+}
+
+/* ── Transfer card ── */
+.transfer-card {
+  max-width: 26rem;
+  margin: 0 auto; 
+  text-align: center;
+}
+
+.transfer-card .btn-dark {
+  align-self: center;
+  height: 2.5rem;
+  width: 50%;
+  font-size: 1.125rem;
+}
+
+/* ── Profile ── */
+.profile {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  font-size: 1.125rem;
+  padding-right: 1rem;
+}
+
+.profile .btn-dark {
+  color: var(--color-gold);
+  --bs-btn-bg:                 var(--color-primary-dark);
+  --bs-btn-border-color:        var(--color-primary-dark);
+}
+
+.profile .btn-dark:hover {
+  color: var(--color-gold-light);
+  background-color: var(--color-primary-dark);
+  border-color:  var(--color-gold-light);
+}
+
+.offcanvas {
+  background-color: var(--color-primary-dark);
+  color: var(--color-text-on-dark);
+}
+
+.offcanvas-header {
+  border-bottom:  3px solid var(--color-gold) !important;
+  box-shadow: var(--shadow-card);
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.offcanvas .list-group-item {
+  background-color: var(--color-primary);
+  color: var(--color-text-on-dark);
+  border-color: var(--color-primary-dark);
+}
+
+.offcanvas .list-group-item:first-child {
+  border-bottom: 1px solid var(--color-gold-light)
+}
+
+.offcanvas .list-group-item:hover {
+  background-color: var(--color-primary-dark);
+  color: var(--color-text-on-dark);
+}

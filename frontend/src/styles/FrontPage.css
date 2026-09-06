@@ -1,12 +1,81 @@
 .FrontPage {
+  min-height: 100vh;
+  background: linear-gradient(
+    150deg,
+    var(--color-primary-dark) 0%,
+    var(--color-primary)      100%,
+    #2a5298                   0%
+  );
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
   text-align: center;
-  background-color: #282c34;
-  font-size: calc(10px + 2vmin);
 }
 
 .FrontPage-header {
-  align-items: center;
-  color: white;
+  color: var(--color-gold);
+}
+
+.FrontPage-header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin: 0;
+}
+
+.frontpage-tagline {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.05rem;
+  margin-top: 0.5rem;
+  letter-spacing: 0.02em;
+}
+
+.Frontpage-toggle {
+  align-self: flex-end;
+  color: var(--color-text-on-dark);
+  padding: 0.5rem;
+}
+
+/* ── Login card ─────────────────────────────────────────────── */
+.account-box {
+  width: min(35rem, 90vw);
+  border: none !important;
+  border-top: 3px solid var(--color-gold) !important;
+  border-radius: var(--radius-card) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  align-self: center;
 }
 
 
+.account-box .nav-tabs {
+  --bs-nav-tabs-link-active-color:        var(--color-text-primary);
+  --bs-nav-tabs-link-active-border-color: var(--color-text-primary)
+                                          var(--color-text-primary)
+                                          var(--color-card);
+  --bs-nav-tabs-border-color:             var(--color-text-primary);
+  --bs-nav-link-color:                    var(--color-text-muted);
+  --bs-body-bg:                           var(--color-card);
+}
+
+.account-box .card-body {
+  border-radius: var(--radius-card) !important;
+  background-color: var(--color-card);
+}
+
+.account-box .form-control {
+  justify-self: center;
+}
+
+.account-box .form-control:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 0.2rem rgba(var(--color-primary-rgb), 0.2);
+}
+
+.account-box .btn {
+  --bs-btn-bg:                  var(--color-primary);
+  --bs-btn-border-color:        var(--color-primary);
+  --bs-btn-color:               var(--color-text-on-dark);
+  --bs-btn-hover-bg:            var(--color-primary-dark);
+  --bs-btn-hover-border-color:  var(--color-primary-dark);
+  --bs-btn-active-bg:           var(--color-primary-dark);
+}

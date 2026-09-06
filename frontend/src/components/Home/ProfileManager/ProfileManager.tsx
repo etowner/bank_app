@@ -70,10 +70,11 @@ export default function ProfileManager() {
   };
 
   return (
-    <>
-      <a href="#profile" onClick={handleShow}>
+    <div className="profile">
+      <Button variant="dark" className="profile" onClick={handleShow}>
+        <i className="bi bi-person-circle" aria-hidden="true"></i>
         {username}
-      </a>
+      </Button>
       <Offcanvas show={show} onHide={handleClose} placement="end">
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>Profile</Offcanvas.Title>
@@ -152,6 +153,6 @@ export default function ProfileManager() {
           </ListGroup>
         </Offcanvas.Body>
       </Offcanvas>
-    </>
+    </div>
   );
 }

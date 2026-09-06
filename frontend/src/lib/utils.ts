@@ -8,3 +8,13 @@ export const formatDate = (timestamp: string) => {
         hour12: true
     });
 };
+
+export const formatCurrency = (n: number) =>
+  n.toLocaleString("en-US", { style: "currency", currency: "USD" });
+
+export const getCssVar = (name: string) =>
+  getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+
+export const formatTransfer = (transfer: string) => {
+  return transfer.replace(/_/g, " ");
+};
