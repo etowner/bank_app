@@ -14,3 +14,7 @@ export const formatCurrency = (n: number) =>
 
 export const getCssVar = (name: string) =>
   getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+
+export const formatTransfer = (transfer: string) => {
+  return transfer.replace(/_/g, " ");
+};

@@ -9,9 +9,6 @@
   color: var(--color-text-primary);
 }
 
-.home-welcome-name {
-  color: var(--color-text-primary);
-}
 /* ── Account list rows ── */
 .account-row {
   display: flex;
@@ -60,7 +57,7 @@
 
 .account-view .btn:hover {
   color: var(--color-card);
-  background-color:                  var(--color-text-primary);
+  background-color: var(--color-text-primary);
   border-color:        var(--color-text-primary);
 }
 
@@ -71,6 +68,18 @@
   margin: 0 auto;
 }
 
+.account-options .list-group-item {
+  color: var(--color-text-on-dark);
+  background-color: var(--color-primary);
+  border: 0.5px solid var(--color-primary-dark);
+} 
+
+.account-options .list-group-item:hover {
+  background-color: var(--color-primary-dark);
+  color: var(--color-text-on-dark);
+}
+
+/* ── Transfer card ── */
 .transfer-card {
   max-width: 26rem;
   margin: 0 auto; 
@@ -104,55 +113,4 @@
   background-color: var(--color-primary-dark);
   border-color:  var(--color-gold-light);
   
-}
-/* .profile .btn-dark .bi {
-
-} */
-
-
-/* ── Financial summary card ── */
-.summary-total {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 0.75rem;
-}
-
-.summary-total-label {
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--color-text-muted);
-}
-
-.summary-total-value {
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: var(--color-primary);
-}
-
-.summary-account-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.5rem 0;
-  border-bottom: 1px solid var(--color-border);
-}
-
-.summary-account-row:last-child {
-  border-bottom: none;
-}
-
-.summary-account-type {
-  font-size: 0.9rem;
-  color: var(--color-text-muted);
-}
-
-.summary-account-number {
-  font-size: 0.75rem;
-}
-
-.summary-account-balance {
-  font-weight: 600;
-  color: var(--color-text-primary);
 }

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { Alert, Button, Form } from "react-bootstrap";
+import { Alert, Button, Form, Row, Col } from "react-bootstrap";
 import { withdraw } from "../../api/transactionApi";
 import type { Account } from "../../lib/types";
 
@@ -45,6 +45,8 @@ export default function Withdraw({ balance, setAccount, fetchAccountData }: With
 
   return (
     <Form>
+      <Row className="justify-content-center">
+        <Col xs={12} md={7}>
       <Form.Group className="mb-3">
         <Form.Label>Amount</Form.Label>
         <Form.Control
@@ -70,6 +72,8 @@ export default function Withdraw({ balance, setAccount, fetchAccountData }: With
           {error}
         </Alert>
       )}
+      </Col>
+      </Row>
     </Form>
   );
 }

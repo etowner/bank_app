@@ -56,10 +56,34 @@
 .account-hero-balance {
   font-size: 2.25rem;
   font-weight: 700;
-  color: var(--color-primary);
+  color: var(--color-gold);
   line-height: 1.2;
 }
 
+.bank-card .table{
+  --bs-table-bg: var(--color-card) !important;
+  --bs-table-color: var(--color-text-primary);
+}
+
 /* Transaction amount colours */
-.tx-credit { color: var(--color-success); font-weight: 600; }
-.tx-debit  { color: var(--color-danger);  font-weight: 600; }
+.tx-credit { color: var(--color-success) !important; font-weight: 600; }
+.tx-debit  { color: var(--color-danger) !important;  font-weight: 600; }
+
+.bank-card .nav-tabs {
+  --bs-nav-tabs-link-active-color:        var(--color-text-primary);
+  --bs-nav-tabs-link-active-border-color: var(--color-text-primary)
+                                          var(--color-text-primary)
+                                          var(--color-card);
+  --bs-nav-tabs-border-color:             var(--color-text-primary);
+  --bs-nav-link-color:                    var(--color-text-muted);
+  --bs-body-bg:                           var(--color-card);
+}
+
+.bank-card .btn-dark {
+  --bs-btn-bg:                  var(--color-primary);
+  --bs-btn-border-color:        var(--color-primary);
+  --bs-btn-color:               var(--color-text-on-dark);
+  --bs-btn-hover-bg:            var(--color-primary-dark);
+  --bs-btn-hover-border-color:  var(--color-primary-dark);
+  --bs-btn-active-bg:           var(--color-primary-dark);
+}

@@ -1,12 +1,10 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Alert, Button, Modal } from "react-bootstrap";
-import { useUserContext } from "../../context/UserContext";
 import { deleteAccount } from "../../api/accountApi";
 import { getAxiosError } from "../../api/axiosConfig";
 
 export default function CloseAccount() {
-  const { fetchUser } = useUserContext();
   const { accountNumber } = useParams<{ accountNumber: string }>();
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
@@ -32,7 +30,7 @@ export default function CloseAccount() {
 
   return (
     <>
-      <Button variant="outline-danger" onClick={handleShow}>
+      <Button variant="danger" onClick={handleShow}>
         Close Account
       </Button>
       <Modal show={show} onHide={handleClose}>

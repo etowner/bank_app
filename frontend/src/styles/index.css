@@ -32,6 +32,7 @@
   --bs-card-bg: var(--color-card);
   --bs-card-cap-bg: var(--color-card);
   --bs-border-color: var(--color-border);
+  
 }
 
 [data-bs-theme="dark"]  { color-scheme: dark; }

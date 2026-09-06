@@ -7,7 +7,6 @@ import OpenAccount from "./OpenAccount";
 import PieChart from "./PieChart";
 import { useUserContext } from "../../context/UserContext";
 import { createAccount } from "../../api/accountApi";
-import FinancialSummary from "./Summary";
 import "../../styles/Home.css";
 
 const Home = () => {
@@ -39,7 +38,7 @@ const Home = () => {
       <Header />
       <Container className="py-4">
         <div className="home-welcome mb-4">
-          Welcome, <span className="home-welcome-name">{username}</span>
+          Welcome, {username}
         </div>
         <Row xs={1} md={2} className="g-4">
           <Col>
@@ -75,9 +74,6 @@ const Home = () => {
             </Card>
           </Col>
           <Col>
-            {/* <Card className="bank-card">
-              <FinancialSummary accounts={accounts} />
-            </Card> */}
           </Col>
         </Row>
       </Container>

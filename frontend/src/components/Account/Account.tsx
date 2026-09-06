@@ -1,6 +1,5 @@
 import { useEffect, useCallback, useState } from "react";
-import { Accordion, useAccordionButton } from "react-bootstrap";
-import { Button, Card, Col, Container, Row, Table } from "react-bootstrap";
+import { Card, Col, Container, Row, Table, Tab, Tabs } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import Header from "../Home/Header";
 import Deposit from "./Deposit";
@@ -9,21 +8,12 @@ import CloseAccount from "./CloseAccount";
 import LineChart from "./LineChart";
 import { getTransactions } from "../../api/transactionApi";
 import { getAccount } from "../../api/accountApi";
-import { formatCurrency, formatDate } from "../../lib/utils";
+import { formatCurrency, formatDate, formatTransfer } from "../../lib/utils";
 import type { Account, Transaction } from "../../lib/types";
 import { getAxiosError } from "../../api/axiosConfig";
 import "../../styles/Account.css";
 
 const isCredit = (type: string) => type.toLowerCase() === "deposit";
-
-function CustomToggle({children, eventKey, }: { children: React.ReactNode; eventKey: string; }) {
-  const showAction = useAccordionButton(eventKey);
-  return (
-    <Button variant="dark" onClick={showAction} className="mb-3">
-      {children}
-    </Button>
-  );
-}
 
 const AccountPage = () => {
   const { accountNumber } = useParams<{ accountNumber: string }>();
@@ -55,7 +45,7 @@ const AccountPage = () => {
       <Header />
       <Container className="py-4">
         <button className="account-back" onClick={() => void navigate("/home")}>
-          ← Back to accounts
+          ← Back
         </button>
 
         <div className="account-hero">
@@ -93,7 +83,7 @@ const AccountPage = () => {
                       transactions.map((tx) => (
                         <tr key={tx.id}>
                           <td>
-                            {tx.type}
+                            {formatTransfer(tx.type)}
                             {tx.counterparty ? ` — ${tx.counterparty}` : ""}
                           </td>
                           <td className={isCredit(tx.type) ? "tx-credit" : "tx-debit"}>
@@ -116,28 +106,21 @@ const AccountPage = () => {
                 <h4>Transaction Options</h4>
               </Card.Header>
               <Card.Body>
-                <Accordion defaultActiveKey="2">
-                  <CustomToggle eventKey="0">Deposit</CustomToggle>
-                  <Accordion.Collapse eventKey="0">
-                    <div className="mt-3 mb-3">
-                      <Deposit
-                        setAccount={setAccount}
-                        fetchAccountData={fetchAccountData}
-                      />
-                    </div>
-                  </Accordion.Collapse>
-                  <Row></Row>
-                  <CustomToggle eventKey="1">Withdraw</CustomToggle>
-                  <Accordion.Collapse eventKey="1">
-                    <div className="mt-3 mb-3">
-                      <Withdraw
-                        balance={account?.balance}
-                        setAccount={setAccount}
-                        fetchAccountData={fetchAccountData}
-                      />
-                    </div>
-                  </Accordion.Collapse>
-                </Accordion>
+                <Tabs defaultActiveKey="deposit" className="mb-4" fill>
+                  <Tab eventKey="deposit" title="Deposit">
+                    <Deposit
+                      setAccount={setAccount}
+                      fetchAccountData={fetchAccountData}
+                    />
+                  </Tab>
+                  <Tab eventKey="withdraw" title="Withdraw">
+                    <Withdraw
+                      balance={account?.balance}
+                      setAccount={setAccount}
+                      fetchAccountData={fetchAccountData}
+                    />
+                  </Tab>
+                </Tabs>
               </Card.Body>
             </Card>
           </Col>

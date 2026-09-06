@@ -13,7 +13,7 @@
 }
 
 .FrontPage-header {
-  color: var(--color-text-on-dark);
+  color: var(--color-gold);
 }
 
 .FrontPage-header h1 {
@@ -37,8 +37,6 @@
 }
 
 /* ── Login card ─────────────────────────────────────────────── */
-
-/* min() caps at 35rem on large screens, shrinks to 90vw on small */
 .account-box {
   width: min(35rem, 90vw);
   border: none !important;

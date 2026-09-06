@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { Alert, Button, Form } from "react-bootstrap";
+import { Alert, Button, Form, Row, Col } from "react-bootstrap";
 import { deposit } from "../../api/transactionApi";
 import type { Account } from "../../lib/types";
 
@@ -41,31 +41,35 @@ export default function Deposit({ setAccount, fetchAccountData }: DepositProps) 
 
   return (
     <Form>
-      <Form.Group className="mb-3">
-        <Form.Label>Amount</Form.Label>
-        <Form.Control
-          type="number"
-          value={amount}
-          onChange={(e) => setAmount(e.target.value)}
-          placeholder="0.00"
-          min="0"
-          step="0.01"
-        />
-      </Form.Group>
-      <div className="d-grid">
-        <Button
-          variant="dark"
-          onClick={(e) => void handleDepositClick(e)}
-          disabled={loading}
-        >
-          {loading ? "Processing…" : "Deposit"}
-        </Button>
-      </div>
-      {error && (
-        <Alert variant="danger" className="mt-3 mb-0">
-          {error}
-        </Alert>
-      )}
+      <Row className="justify-content-center">
+        <Col xs={12} md={7}>
+          <Form.Group className="mb-3">
+            <Form.Label>Amount</Form.Label>
+            <Form.Control
+              type="number"
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
+              placeholder="0.00"
+              min="0"
+              step="0.01"
+            />
+          </Form.Group>
+          <div className="d-grid">
+            <Button
+              variant="dark"
+              onClick={(e) => void handleDepositClick(e)}
+              disabled={loading}
+            >
+              {loading ? "Processing…" : "Confirm"}
+            </Button>
+          </div>
+          {error && (
+            <Alert variant="danger" className="mt-3 mb-0">
+              {error}
+            </Alert>
+          )}
+        </Col>
+      </Row>
     </Form>
   );
 }
