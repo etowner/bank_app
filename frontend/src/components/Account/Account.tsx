@@ -1,28 +1,19 @@
 import { useEffect, useCallback, useState } from "react";
-import { Button, Card, Col, Container, Nav, Navbar, Row, Table, Accordion, useAccordionButton  } from "react-bootstrap";
+import { Card, Col, Container, Row, Table, Tab, Tabs } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
+import Header from "../Home/Header";
 import Deposit from "./Deposit";
 import Withdraw from "./Withdraw";
 import CloseAccount from "./CloseAccount";
 import LineChart from "./LineChart";
 import { getTransactions } from "../../api/transactionApi";
 import { getAccount } from "../../api/accountApi";
-import { getAxiosError } from "../../api/axiosConfig";
-import { formatDate } from '../../lib/utils';
+import { formatCurrency, formatDate, formatTransfer } from "../../lib/utils";
 import type { Account, Transaction } from "../../lib/types";
-import "../../styles/Home.css";
+import { getAxiosError } from "../../api/axiosConfig";
+import "../../styles/Account.css";
 
-function CustomToggle({ children, eventKey }: { children: React.ReactNode; eventKey: string }) {
-  const showAction = useAccordionButton(eventKey, () => { /* empty */ });
-
-  return (
-    <Button variant="dark" onClick={showAction} className="mb-3">
-      {" "}
-      {children}
-    </Button>
-  );
-}
-
+const isCredit = (type: string) => type.toLowerCase() === "deposit";
 
 const AccountPage = () => {
   const { accountNumber } = useParams<{ accountNumber: string }>();
@@ -31,65 +22,49 @@ const AccountPage = () => {
   const [, setError] = useState<string | null>(null);
   const navigate = useNavigate();
 
-  const handleClick = () => {
-    void navigate(`/home`);
-  };
-
   const fetchAccountData = useCallback(async () => {
-    // Fetch account and transactions in parallel, so they will succeed together or fail together
     try {
-      const [acc, txns] = await Promise.all([ 
+      const [acc, txns] = await Promise.all([
         getAccount(accountNumber!),
-        getTransactions(accountNumber!)
+        getTransactions(accountNumber!),
       ]);
       setAccount(acc);
       setTransactions(txns);
     } catch (err) {
       setError(getAxiosError(err));
-      console.error(err);
     }
-   
   }, [accountNumber]);
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
-    void fetchAccountData();
+    void fetchAccountData()
   }, [fetchAccountData]);
 
-
   return (
-    <div className="Home">
-      <Navbar bg="dark" variant="dark" className="mb-5">
-        <Container>
-          <Navbar.Collapse>
-            <Nav className="me-auto">
-              <Nav.Link onClick={handleClick}>Back</Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
-      <Container>
-        <Row className="mb-3"></Row>
-        {/* Account Info */}
-        <Row className="mb-3">
-          <h1>
-            {account?.type} - {accountNumber}
-          </h1>
-        </Row>
-        <Row className="mb-3">
-          <h3>Balance: ${account?.balance} </h3>
-        </Row>
+    <div className="Account">
+      <Header />
+      <Container className="py-4">
+        <button className="account-back" onClick={() => void navigate("/home")}>
+          ← Back
+        </button>
 
-        <Row className="mb-4 justify-content-md-center">
-          <Col sm={6}>
-            <Card border="dark" style={{ width: "32rem" }}>
-              <Card.Header
-                style={{ color: "white", backgroundColor: "#282c34" }}
-              >
-                <h3>Transaction History</h3>
+        <div className="account-hero">
+          <div className="account-hero-type">{account?.type} Account</div>
+          <div className="account-hero-number">#{accountNumber}</div>
+          <div className="account-hero-label">Current Balance</div>
+          <div className="account-hero-balance">
+            {account ? formatCurrency(account.balance) : "—"}
+          </div>
+        </div>
+
+        <Row xs={1} md={2} className="g-4 mb-4">
+          <Col>
+            <Card className="bank-card">
+              <Card.Header className="card-header-primary">
+                <h4>Transaction History</h4>
               </Card.Header>
               <Card.Body>
-                <Table bordered hover>
+                <Table hover>
                   <thead>
                     <tr>
                       <th>Type</th>
@@ -98,62 +73,76 @@ const AccountPage = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {transactions.map((transaction) => (
-                      <tr key={transaction.id}>
-                        <td>{transaction.type} {transaction.counterparty}</td>
-                        <td>{transaction.amount}</td>
-                        <td>{formatDate(transaction.timestamp)}</td>
+                    {transactions.length === 0 ? (
+                      <tr>
+                        <td colSpan={3} className="text-center text-muted py-3">
+                          No transactions yet.
+                        </td>
                       </tr>
-                    ))}
+                    ) : (
+                      transactions.map((tx) => (
+                        <tr key={tx.id}>
+                          <td>
+                            {formatTransfer(tx.type)}
+                            {tx.counterparty ? ` — ${tx.counterparty}` : ""}
+                          </td>
+                          <td className={isCredit(tx.type) ? "tx-credit" : "tx-debit"}>
+                            {isCredit(tx.type) ? "+" : "−"}
+                            {formatCurrency(tx.amount)}
+                          </td>
+                          <td>{formatDate(tx.timestamp)}</td>
+                        </tr>
+                      ))
+                    )}
                   </tbody>
                 </Table>
               </Card.Body>
             </Card>
           </Col>
-          {/* Account Actions */}
-          <Col sm={5}>
-            <Card border="dark" style={{ width: "30rem" }}>
-              <Card.Header
-                style={{ color: "white", backgroundColor: "#282c34" }}
-              >
-                <h3>Transaction Options</h3>
+
+          <Col>
+            <Card className="bank-card">
+              <Card.Header className="card-header-primary">
+                <h4>Transaction Options</h4>
               </Card.Header>
               <Card.Body>
-                <Accordion defaultActiveKey="2">
-                  <CustomToggle eventKey="0">Deposit</CustomToggle>
-                  <Col>
-                    <Accordion.Collapse eventKey="0">
-                      <Card.Body>
-                        <Deposit setAccount={setAccount} fetchAccountData={fetchAccountData} />
-                      </Card.Body>
-                    </Accordion.Collapse>
-                  </Col>
-                  <Col>
-                    <CustomToggle eventKey="1">Withdraw</CustomToggle>
-                    <Accordion.Collapse eventKey="1">
-                      <Card.Body>
-                        <Withdraw
-                          balance={account?.balance}
-                          setAccount={setAccount}
-                          fetchAccountData={fetchAccountData}
-                        />
-                      </Card.Body>
-                    </Accordion.Collapse>
-                  </Col>
-                </Accordion>
+                <Tabs defaultActiveKey="deposit" className="mb-4" fill>
+                  <Tab eventKey="deposit" title="Deposit">
+                    <Deposit
+                      setAccount={setAccount}
+                      fetchAccountData={fetchAccountData}
+                    />
+                  </Tab>
+                  <Tab eventKey="withdraw" title="Withdraw">
+                    <Withdraw
+                      balance={account?.balance}
+                      setAccount={setAccount}
+                      fetchAccountData={fetchAccountData}
+                    />
+                  </Tab>
+                </Tabs>
               </Card.Body>
             </Card>
           </Col>
         </Row>
-        <Row className="mb-3">
-          <Card>
-            <LineChart
-              accountNumber={accountNumber!}
-              transactions={transactions}
-            />
-          </Card>
+
+        <Row className="mb-4">
+          <Col>
+            <Card className="bank-card">
+              <Card.Header className="card-header-primary">
+                <h4>Transaction Chart</h4>
+              </Card.Header>
+              <Card.Body>
+                <LineChart
+                  accountNumber={accountNumber!}
+                  transactions={transactions}
+                />
+              </Card.Body>
+            </Card>
+          </Col>
         </Row>
-        <Row className="md-5 justify-content-md-center">
+
+        <Row className="mb-4">
           <Col>
             <CloseAccount />
           </Col>

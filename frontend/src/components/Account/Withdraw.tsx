@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { Button, Form, Row, Col, Alert } from "react-bootstrap";
+import { Alert, Button, Form, Row, Col } from "react-bootstrap";
 import { withdraw } from "../../api/transactionApi";
 import type { Account } from "../../lib/types";
 
@@ -11,18 +11,17 @@ interface WithdrawProps {
 }
 
 export default function Withdraw({ balance, setAccount, fetchAccountData }: WithdrawProps) {
-  const [amount, setAmount] = useState('');
   const { accountNumber } = useParams<{ accountNumber: string }>();
-  const [error, setError] = useState<string | null>(null);
+  const [amount, setAmount] = useState("");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-
-  const handleWithdrawClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-    const parsedAmount = parseFloat(amount); 
+  const handleWithdrawClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    const parsedAmount = parseFloat(amount);
 
     if (isNaN(parsedAmount) || parsedAmount <= 0) {
-      setError("Invalid withdrawal amount. Please enter a valid amount.");
+      setError("Enter a valid withdrawal amount.");
       return;
     }
     if (balance === undefined || balance - parsedAmount < 0) {
@@ -31,46 +30,50 @@ export default function Withdraw({ balance, setAccount, fetchAccountData }: With
     }
 
     setLoading(true);
-
     try {
-      const updateAccount = await withdraw(accountNumber!, parsedAmount);
+      const updatedAccount = await withdraw(accountNumber!, parsedAmount);
+      setAmount("");
       setError(null);
-      setAmount('');
-      setAccount(updateAccount);
+      setAccount(updatedAccount);
       await fetchAccountData();
-    } catch (error) {
+    } catch {
       setError("Withdrawal failed. Please try again.");
-      console.error(error);
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div>
-      <Form.Group as={Row} className="mb-3 ">
-        <Form.Label column sm={5}>
-          Enter an amount:
-        </Form.Label>
-        <Col sm={3}>
-          <Form.Control
-            type="number"
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-            placeholder="Enter amount"
-            min="0"
-            step="0.01"
-          />
-        </Col>
-        <Col sm={2}>
-          <Button onClick={(e) => void handleWithdrawClick(e)} className="mb-3">
-            {loading ? <>Loading..</> : <>Submit</>}
-          </Button>
-        </Col>
+    <Form>
+      <Row className="justify-content-center">
+        <Col xs={12} md={7}>
+      <Form.Group className="mb-3">
+        <Form.Label>Amount</Form.Label>
+        <Form.Control
+          type="number"
+          value={amount}
+          onChange={(e) => setAmount(e.target.value)}
+          placeholder="0.00"
+          min="0"
+          step="0.01"
+        />
       </Form.Group>
-      <Row className="justify-content-md-center">
-        <Col sm={6}>{error && <Alert variant="danger">{error}</Alert>}</Col>
+      <div className="d-grid">
+        <Button
+          variant="dark"
+          onClick={(e) => void handleWithdrawClick(e)}
+          disabled={loading}
+        >
+          {loading ? "Processing…" : "Withdraw"}
+        </Button>
+      </div>
+      {error && (
+        <Alert variant="danger" className="mt-3 mb-0">
+          {error}
+        </Alert>
+      )}
+      </Col>
       </Row>
-    </div>
+    </Form>
   );
 }

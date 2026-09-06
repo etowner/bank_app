@@ -17,9 +17,9 @@ export default function PieChart({ accounts }: { accounts: Account[] }) {
         label: "%",
         data: percentages,
         backgroundColor: [
-          "rgba(40, 44, 52, 1)",
-          "rgba(239, 196, 92, 1)",
-          "rgba(112, 128, 144, 1)",
+          "rgba(27,  58,  92,  1)",  
+          "rgba(212, 168, 67,  1)",   
+          "rgba(107, 124, 147, 1)",   
         ],
         hoverOffset: 4,
       },
