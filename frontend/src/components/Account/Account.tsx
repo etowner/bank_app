@@ -6,12 +6,12 @@ import Deposit from "./Deposit";
 import Withdraw from "./Withdraw";
 import CloseAccount from "./CloseAccount";
 import LineChart from "./LineChart";
-import { getTransactions } from "../../api/transactionApi";
-import { getAccount } from "../../api/accountApi";
-import { formatCurrency, formatDate, formatTransfer } from "../../lib/utils";
-import type { Account, Transaction } from "../../lib/types";
-import { getAxiosError } from "../../api/axiosConfig";
-import "../../styles/Account.css";
+import { getTransactions } from "@/api/transactionApi";
+import { getAccount } from "@/api/accountApi";
+import { formatCurrency, formatDate, formatTransfer } from "@/lib/utils";
+import type { Account, Transaction } from "@/lib/types";
+import { getAxiosError } from "@/api/axiosConfig";
+import "@/styles/Account.css";
 
 const isCredit = (type: string) => type.toLowerCase() === "deposit";
 
@@ -19,7 +19,6 @@ const AccountPage = () => {
   const { accountNumber } = useParams<{ accountNumber: string }>();
   const [account, setAccount] = useState<Account | null>(null);
   const [transactions, setTransactions] = useState<Transaction[]>([]);
-  const [, setError] = useState<string | null>(null);
   const navigate = useNavigate();
 
   const fetchAccountData = useCallback(async () => {
@@ -31,7 +30,7 @@ const AccountPage = () => {
       setAccount(acc);
       setTransactions(txns);
     } catch (err) {
-      setError(getAxiosError(err));
+      console.error("Failed to fetch account data:", getAxiosError(err));
     }
   }, [accountNumber]);
 

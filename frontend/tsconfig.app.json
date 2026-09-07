@@ -6,6 +6,10 @@
     "skipLibCheck": true,
     "types": ["vitest/globals"],
 
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+
     // Bundler Mode
    "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,

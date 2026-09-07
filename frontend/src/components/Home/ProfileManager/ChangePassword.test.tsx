@@ -1,11 +1,11 @@
 import ChangePassword from "./ChangePassword";
-import { changePassword } from "../../../api/userApi";
-import { getAxiosError } from "../../../api/axiosConfig";
-import { render, screen } from "../../../lib/test-utils";
+import { changePassword } from "@/api/userApi";
+import { getAxiosError } from "@/api/axiosConfig";
+import { render, screen } from "@/lib/test-utils";
 import userEvent from "@testing-library/user-event";
 
-vi.mock("../../../api/userApi");
-vi.mock("../../../api/axiosConfig");
+vi.mock("@/api/userApi");
+vi.mock("@/api/axiosConfig");
 
 const user = userEvent.setup();
 

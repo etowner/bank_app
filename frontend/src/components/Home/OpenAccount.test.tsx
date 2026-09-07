@@ -1,4 +1,4 @@
-import { render, screen } from '../../lib/test-utils';
+import { render, screen } from '@/lib/test-utils';
 import userEvent from "@testing-library/user-event";
 import OpenAccount from "./OpenAccount";
 

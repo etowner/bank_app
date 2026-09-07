@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
-import { changePassword } from "../../../api/userApi";
-import { getAxiosError } from "../../../api/axiosConfig";
+import { changePassword } from "@/api/userApi";
+import { getAxiosError } from "@/api/axiosConfig";
 
 export default function ChangePassword({ onClose, onSuccess }: { onClose: () => void; onSuccess?: () => void }) {
   const [currentPassword, setCurrentPassword] = useState("");

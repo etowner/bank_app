@@ -1,9 +1,9 @@
-import { render, screen, waitFor, within } from '../../lib/test-utils';
+import { render, screen, waitFor, within } from '@/lib/test-utils';
 import AccountBox from "./AccountBox";
 import { MemoryRouter } from 'react-router-dom';
 import { userEvent } from '@testing-library/user-event';
-import { registerUser, loginUser } from '../../api/userApi';
-import { getAxiosError } from '../../api/axiosConfig';
+import { registerUser, loginUser } from '@/api/userApi';
+import { getAxiosError } from '@/api/axiosConfig';
 
 const mockNavigate = vi.fn();
 
@@ -12,8 +12,8 @@ vi.mock('react-router-dom', async () => {
   return { ...actual, useNavigate: () => mockNavigate };
 });
 
-vi.mock('../../api/userApi');
-vi.mock('../../api/axiosConfig');
+vi.mock('@/api/userApi');
+vi.mock('@/api/axiosConfig');
 
 const getCreatePanel = () => screen.getByRole('tabpanel', { name: /create account/i });
 const getLoginPanel  = () => screen.getByRole('tabpanel', { name: /log in/i });

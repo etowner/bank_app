@@ -1,11 +1,11 @@
-import { render, screen, waitFor } from '../../lib/test-utils';
+import { render, screen, waitFor } from '@/lib/test-utils';
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
 import Withdraw from "./Withdraw";
-import { withdraw } from "../../api/transactionApi";
+import { withdraw } from "@/api/transactionApi";
 
 
-vi.mock("../../api/transactionApi");
+vi.mock("@/api/transactionApi");
 
 vi.mock('react-router-dom', async () => {
   const actual = await vi.importActual('react-router-dom');

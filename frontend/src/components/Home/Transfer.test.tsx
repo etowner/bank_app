@@ -1,13 +1,13 @@
-import { render, screen } from '../../lib/test-utils';
+import { render, screen } from '@/lib/test-utils';
 import userEvent from "@testing-library/user-event";
 import Transfer from "./Transfer";
-import { useUserContext } from "../../context/UserContext";
-import { transfer } from "../../api/transactionApi";
-import { getAxiosError } from "../../api/axiosConfig";
+import { useUserContext } from "@/context/UserContext";
+import { transfer } from "@/api/transactionApi";
+import { getAxiosError } from "@/api/axiosConfig";
 
-vi.mock("../../context/UserContext");
-vi.mock("../../api/transactionApi");
-vi.mock("../../api/axiosConfig");
+vi.mock("@/context/UserContext");
+vi.mock("@/api/transactionApi");
+vi.mock("@/api/axiosConfig");
 
 const mockTransfer = {
   accountNumber1: "1234567890",
@@ -38,7 +38,6 @@ describe("Transfer", () => {
   });
 
   test("renders Transfer component", () => {
-    const { fetchUser } = useUserContext();
     render(<Transfer />);
 
     expect(screen.getByRole("heading", { name: "Transfer" })).toBeInTheDocument();

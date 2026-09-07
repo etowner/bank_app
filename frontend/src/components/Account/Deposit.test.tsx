@@ -1,6 +1,6 @@
-import { render, screen, waitFor } from '../../lib/test-utils';
+import { render, screen, waitFor } from '@/lib/test-utils';
 import userEvent from "@testing-library/user-event";
-import { deposit } from "../../api/transactionApi";
+import { deposit } from "@/api/transactionApi";
 import Deposit from "./Deposit";
 
 
@@ -9,7 +9,7 @@ vi.mock('react-router-dom', async () => {
   return { ...actual, useParams: () => ({ accountNumber: "1234567890" }) };
 });
 
-vi.mock("../../api/transactionApi");
+vi.mock("@/api/transactionApi");
 
 const user = userEvent.setup();
 

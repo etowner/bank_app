@@ -1,7 +1,7 @@
 import "chart.js/auto";
 import type { ChartOptions } from "chart.js";
 import { Pie } from "react-chartjs-2";
-import type { Account } from "../../lib/types";
+import type { Account } from "@/lib/types";
 
 export default function PieChart({ accounts }: { accounts: Account[] }) {
   const totalBalance = accounts.reduce((sum, account) => sum + account.balance, 0);
