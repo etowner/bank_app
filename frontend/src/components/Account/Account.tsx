@@ -19,7 +19,6 @@ const AccountPage = () => {
   const { accountNumber } = useParams<{ accountNumber: string }>();
   const [account, setAccount] = useState<Account | null>(null);
   const [transactions, setTransactions] = useState<Transaction[]>([]);
-  const [, setError] = useState<string | null>(null);
   const navigate = useNavigate();
 
   const fetchAccountData = useCallback(async () => {
@@ -31,7 +30,7 @@ const AccountPage = () => {
       setAccount(acc);
       setTransactions(txns);
     } catch (err) {
-      setError(getAxiosError(err));
+      console.error("Failed to fetch account data:", getAxiosError(err));
     }
   }, [accountNumber]);
 
