@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Alert, Button, Modal } from "react-bootstrap";
-import { deleteAccount } from "../../api/accountApi";
-import { getAxiosError } from "../../api/axiosConfig";
+import { deleteAccount } from "@/api/accountApi";
+import { getAxiosError } from "@/api/axiosConfig";
 
 export default function CloseAccount() {
   const { accountNumber } = useParams<{ accountNumber: string }>();

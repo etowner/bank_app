@@ -1,11 +1,11 @@
-import { render, screen } from '../../../lib/test-utils';
+import { render, screen } from '@/lib/test-utils';
 import userEvent from "@testing-library/user-event";
-import { deleteUser, logoutUser } from "../../../api/userApi";
-import { deleteAllAccounts } from "../../../api/accountApi";
-import { useUserContext } from "../../../context/UserContext";
+import { deleteUser, logoutUser } from "@/api/userApi";
+import { deleteAllAccounts } from "@/api/accountApi";
+import { useUserContext } from "@/context/UserContext";
 import { MemoryRouter } from "react-router-dom";
 import ProfileManager from "./ProfileManager";
-import { getAxiosError } from '../../../api/axiosConfig';
+import { getAxiosError } from '@/api/axiosConfig';
 
 const navigateMock = vi.fn();
 
@@ -25,10 +25,10 @@ const mockUserContext = {
   fetchUser: vi.fn(),
 };
 
-vi.mock('../../../context/UserContext');
-vi.mock("../../../api/userApi");
-vi.mock("../../../api/accountApi");
-vi.mock("../../../api/axiosConfig");
+vi.mock('@/context/UserContext');
+vi.mock("@/api/userApi");
+vi.mock("@/api/accountApi");
+vi.mock("@/api/axiosConfig");
 
 const user = userEvent.setup();
 

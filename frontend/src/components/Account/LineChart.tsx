@@ -1,8 +1,8 @@
 import "chart.js/auto";
 import { Line } from "react-chartjs-2";
 import type { ChartOptions } from "chart.js";
-import type { Transaction } from "../../lib/types";
-import { formatDate, getCssVar } from "../../lib/utils";
+import type { Transaction } from "@/lib/types";
+import { formatDate, getCssVar } from "@/lib/utils";
 
 interface LineChartProps {
   accountNumber: string;

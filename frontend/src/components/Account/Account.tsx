@@ -6,12 +6,12 @@ import Deposit from "./Deposit";
 import Withdraw from "./Withdraw";
 import CloseAccount from "./CloseAccount";
 import LineChart from "./LineChart";
-import { getTransactions } from "../../api/transactionApi";
-import { getAccount } from "../../api/accountApi";
-import { formatCurrency, formatDate, formatTransfer } from "../../lib/utils";
-import type { Account, Transaction } from "../../lib/types";
-import { getAxiosError } from "../../api/axiosConfig";
-import "../../styles/Account.css";
+import { getTransactions } from "@/api/transactionApi";
+import { getAccount } from "@/api/accountApi";
+import { formatCurrency, formatDate, formatTransfer } from "@/lib/utils";
+import type { Account, Transaction } from "@/lib/types";
+import { getAxiosError } from "@/api/axiosConfig";
+import "@/styles/Account.css";
 
 const isCredit = (type: string) => type.toLowerCase() === "deposit";
 

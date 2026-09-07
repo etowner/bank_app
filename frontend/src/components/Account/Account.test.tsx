@@ -1,12 +1,12 @@
 import AccountPage from "./Account";
 import { userEvent } from '@testing-library/user-event';
 import { MemoryRouter } from "react-router-dom";
-import { getTransactions } from "../../api/transactionApi";
-import { getAccount } from "../../api/accountApi";
-import { getAxiosError } from "../../api/axiosConfig";
-import { formatDate } from '../../lib/utils';
-import { render, screen, waitFor } from '../../lib/test-utils';
-import type { Account, Transaction } from "../../lib/types";
+import { getTransactions } from "@/api/transactionApi";
+import { getAccount } from "@/api/accountApi";
+import { getAxiosError } from "@/api/axiosConfig";
+import { formatDate } from '@/lib/utils';
+import { render, screen, waitFor } from '@/lib/test-utils';
+import type { Account, Transaction } from "@/lib/types";
 
 const mockNavigate = vi.fn();
 const user = userEvent.setup();
@@ -16,9 +16,9 @@ vi.mock('react-router-dom', async () => {
   return { ...actual, useNavigate: () => mockNavigate, useParams: () => ({ accountNumber: "1234567890" }) };
 });
 
-vi.mock("../../api/accountApi");
-vi.mock("../../api/axiosConfig");
-vi.mock("../../api/transactionApi");
+vi.mock("@/api/accountApi");
+vi.mock("@/api/axiosConfig");
+vi.mock("@/api/transactionApi");
 
 vi.mock("./CloseAccount.tsx", () => ({
   default: () => <div data-testid="close-account">Mocked CloseAccount</div>,
