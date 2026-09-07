@@ -1,64 +1,30 @@
-// @ts-check
-import js from "@eslint/js";
-import globals from "globals";
+import eslintReact from "@eslint-react/eslint-plugin";
+import eslintJs from "@eslint/js";
+import { defineConfig } from "eslint/config";
 import tseslint from "typescript-eslint";
-import reactPlugin from "eslint-plugin-react";
-import reactHooks from "eslint-plugin-react-hooks";
-import reactRefresh from 'eslint-plugin-react-refresh';
 import eslintConfigPrettier from "eslint-config-prettier";
-import { defineConfig, globalIgnores } from "eslint/config";
 
-export default defineConfig([
-  globalIgnores( ['node_modules/', 'dist/', 'build/', 'coverage/',]),
-
-  // Baseline 
+export default defineConfig(
   {
-    files: ['**/*.{ts,tsx,js,jsx}'],
-    extends: [ js.configs.recommended,],
-    languageOptions: { globals: globals.browser,},
-  },
+    files: ["**/*.ts", "**/*.tsx"],
 
-  // TypeScript
-  {
-    files: ['**/*.{ts,tsx}'],
     extends: [
-      ...tseslint.configs.recommendedTypeChecked,
-      ...tseslint.configs.stylisticTypeChecked,
+      eslintJs.configs.recommended,
+      tseslint.configs.recommended,
+      eslintReact.configs["recommended-typescript"],
     ],
+
     languageOptions: {
+      parser: tseslint.parser,
       parserOptions: {
         projectService: true,
         tsconfigRootDir: import.meta.dirname,
       },
     },
-    rules: {
-      '@typescript-eslint/no-explicit-any': 'warn',
-      '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
-      '@typescript-eslint/consistent-type-imports': 'warn',
-    },
-  },
-
-  // React + Vite
-  {
-    files: ['**/*.{jsx,tsx}'],
-    extends: [
-      reactPlugin.configs.flat.recommended,
-      reactPlugin.configs.flat['jsx-runtime'], // React 17+ 
-      reactRefresh.configs.vite,
-    ],
-    
-    settings: {
-      react: {
-        version: '19',
-      },
-    },
 
     rules: {
-      'react/prop-types': 'off', // TypeScript handles this
+      "@eslint-react/no-missing-key": "warn",
     },
   },
-  reactHooks.configs.flat.recommended,
   eslintConfigPrettier
-
-
-]);
+);

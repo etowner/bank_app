@@ -4,7 +4,9 @@
     "module": "esnext",
     "lib": ["ES2023"],
     "skipLibCheck": true,
-
+    "paths": {
+      "@/*": ["./src/*"]
+    },
     // Module Mode
     "moduleResolution": "bundler",
     "moduleDetection": "force",
