@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { Alert, Button, Form, Row, Col } from "react-bootstrap";
-import { withdraw } from "../../api/transactionApi";
-import type { Account } from "../../lib/types";
+import { withdraw } from "@/api/transactionApi";
+import type { Account } from "@/lib/types";
 
 interface WithdrawProps {
   balance: number | undefined;

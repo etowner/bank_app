@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Button, Card, Form, Alert } from "react-bootstrap";
-import { useUserContext } from "../../context/UserContext";
-import { transfer } from "../../api/transactionApi";
-import { getAxiosError } from "../../api/axiosConfig";
+import { useUserContext } from "@/context/UserContext";
+import { transfer } from "@/api/transactionApi";
+import { getAxiosError } from "@/api/axiosConfig";
 
 export default function Transfer() {
   const { fetchUser } = useUserContext();

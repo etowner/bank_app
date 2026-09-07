@@ -1,7 +1,7 @@
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import type { Account } from "../../lib/types";
-import { formatCurrency } from "../../lib/utils";
+import type { Account } from "@/lib/types";
+import { formatCurrency } from "@/lib/utils";
 
 export default function AccountList({ accounts }: { accounts: Account[] }) {
   const navigate = useNavigate();

@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Button, Modal, Offcanvas, ListGroup } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { useUserContext } from "../../../context/UserContext";
+import { useUserContext } from "@/context/UserContext";
 import ChangePassword from "./ChangePassword";
 import ChangeUsername from "./ChangeUsername";
-import { deleteUser, logoutUser } from "../../../api/userApi";
-import { deleteAllAccounts } from "../../../api/accountApi";
+import { deleteUser, logoutUser } from "@/api/userApi";
+import { deleteAllAccounts } from "@/api/accountApi";
 
 export default function ProfileManager() {
   const { username, setUser } = useUserContext();

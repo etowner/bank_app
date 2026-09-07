@@ -1,6 +1,6 @@
 import { Card } from "react-bootstrap";
-import type { Account } from "../../lib/types";
-import { formatCurrency } from "../../lib/utils";
+import type { Account } from "@/lib/types";
+import { formatCurrency } from "@/lib/utils";
 
 interface Props {
   accounts: Account[];
