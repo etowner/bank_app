@@ -1,5 +1,5 @@
 import { Button } from "react-bootstrap";
-import { useTheme } from "../../context/ThemeContext";
+import { useTheme } from "@/context/ThemeContext";
 
 const ThemeToggle = () => {
   const { dark, toggleTheme } = useTheme();

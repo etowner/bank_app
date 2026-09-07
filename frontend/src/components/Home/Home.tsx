@@ -5,9 +5,9 @@ import AccountList from "./AccountList";
 import Header from "./Header";
 import OpenAccount from "./OpenAccount";
 import PieChart from "./PieChart";
-import { useUserContext } from "../../context/UserContext";
-import { createAccount } from "../../api/accountApi";
-import "../../styles/Home.css";
+import { useUserContext } from "@/context/UserContext";
+import { createAccount } from "@/api/accountApi";
+import "@/styles/Home.css";
 
 const Home = () => {
   const { user, username, fetchUser } = useUserContext();

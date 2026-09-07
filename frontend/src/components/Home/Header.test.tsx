@@ -1,4 +1,4 @@
-import { render, screen } from '../../lib/test-utils';
+import { render, screen } from '@/lib/test-utils';
 import Header from "./Header";
 
 vi.mock('./ProfileManager/ProfileManager.tsx', () => ({

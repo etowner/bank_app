@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Alert, Button, Form, Tab, Tabs, Card } from "react-bootstrap";
-import { registerUser, loginUser } from "../../api/userApi";
-import { getAxiosError } from "../../api/axiosConfig";
+import { registerUser, loginUser } from "@/api/userApi";
+import { getAxiosError } from "@/api/axiosConfig";
 interface AuthFormProps {
   idPrefix: string; 
   onSubmit: (e: React.MouseEvent<HTMLButtonElement>) => void;

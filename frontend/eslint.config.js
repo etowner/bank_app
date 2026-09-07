@@ -1,64 +1,43 @@
-// @ts-check
+import eslintReact from "@eslint-react/eslint-plugin";
 import js from "@eslint/js";
 import globals from "globals";
 import tseslint from "typescript-eslint";
-import reactPlugin from "eslint-plugin-react";
 import reactHooks from "eslint-plugin-react-hooks";
-import reactRefresh from 'eslint-plugin-react-refresh';
+import reactRefresh from "eslint-plugin-react-refresh";
 import eslintConfigPrettier from "eslint-config-prettier";
 import { defineConfig, globalIgnores } from "eslint/config";
 
 export default defineConfig([
-  globalIgnores( ['node_modules/', 'dist/', 'build/', 'coverage/',]),
-
-  // Baseline 
+  globalIgnores(["node_modules/", "dist/", "build/", "coverage/"]),
+  // TypeScript + React
   {
-    files: ['**/*.{ts,tsx,js,jsx}'],
-    extends: [ js.configs.recommended,],
-    languageOptions: { globals: globals.browser,},
-  },
-
-  // TypeScript
-  {
-    files: ['**/*.{ts,tsx}'],
+    files: ["**/*.{ts,tsx}"],
     extends: [
+      js.configs.recommended,
       ...tseslint.configs.recommendedTypeChecked,
       ...tseslint.configs.stylisticTypeChecked,
+      eslintReact.configs["recommended-typescript"],
     ],
     languageOptions: {
+      globals: globals.browser,
+      parser: tseslint.parser,
       parserOptions: {
         projectService: true,
         tsconfigRootDir: import.meta.dirname,
       },
     },
     rules: {
-      '@typescript-eslint/no-explicit-any': 'warn',
-      '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
-      '@typescript-eslint/consistent-type-imports': 'warn',
+      "@typescript-eslint/no-explicit-any": "warn",
+      "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
+      "@typescript-eslint/consistent-type-imports": "warn",
     },
   },
 
-  // React + Vite
+  // Vite fast refresh
   {
-    files: ['**/*.{jsx,tsx}'],
-    extends: [
-      reactPlugin.configs.flat.recommended,
-      reactPlugin.configs.flat['jsx-runtime'], // React 17+ 
-      reactRefresh.configs.vite,
-    ],
-    
-    settings: {
-      react: {
-        version: '19',
-      },
-    },
-
-    rules: {
-      'react/prop-types': 'off', // TypeScript handles this
-    },
+    files: ["**/*.{jsx,tsx}"],
+    extends: [reactRefresh.configs.vite],
   },
   reactHooks.configs.flat.recommended,
-  eslintConfigPrettier
-
-
+  eslintConfigPrettier,
 ]);
